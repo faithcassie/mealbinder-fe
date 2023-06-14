@@ -1,38 +1,50 @@
-.App {
-  text-align: center;
+* {
+  font-family: 'Lato', sans-serif;
+  /* background-color: #ffffffdb; */
+
+  /* color: #6f6f6f; */
+}
+.background {
+  padding: 0;
+  margin: 0;
+  background-image: url("./assets/repeat-pattern.jpeg");
+  background-size: 500px;
+  background-repeat: repeat;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.link {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  color: #6f6f6f;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.link:hover {
+  color: #AB6614;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.dashboard-link {
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: regular;
+  color: #000000;
 }
-
-.App-link {
-  color: #61dafb;
+.dashboard-link:hover {
+  color: #AB6614;
+  font-weight: bold;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.active {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  /* background-color: #AB6614; */
+}
+.recipe-button {
+  background-color: #ffffffc8;
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  border-color: black;
+  border-width: 1px;
+  color: #AB6614;
+  font-size: 1rem;
+  font-weight: 700;
 }
