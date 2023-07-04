@@ -39,7 +39,7 @@ const AutocompleteField = () => {
       setOptions([]);
     }
   };
-  const debouncedSearch = debounce(handleSearch, 300);
+  const debouncedSearch = debounce(handleSearch, 300, { trailing: true });
 
   const handleAutocompleteChange = (e, newValue) => {
     // maybe add ingredient to database
@@ -59,7 +59,7 @@ const AutocompleteField = () => {
       //   onInputChange={handleInputChange}
       onInputChange={(event, newInputValue) => {
         // console.log(newInputValue);
-        handleSearch(newInputValue);
+        debouncedSearch(newInputValue);
       }}
       options={options}
       getOptionLabel={(option) => (option ? option.ingredientName : "")}
