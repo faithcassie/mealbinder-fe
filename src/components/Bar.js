@@ -1,9 +1,9 @@
 import { Button, IconButton, Menu, Stack } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Insights from "./Insights";
-import Recipe from "./Recipe";
-import Planner from "./Planner";
+import Insights from "../pages/InsightsPage";
+import Recipe from "../pages/HomePage";
+import Planner from "../pages/PlannerPage";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 

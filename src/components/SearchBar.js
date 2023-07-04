@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   IconButton,
   InputBase,
   Paper,
@@ -8,8 +9,13 @@ import {
 } from "@mui/material";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
+  const handleCreateButton = () => {
+    navigate("recipes/create", { replace: true });
+  };
   return (
     <Stack
       direction={{ sm: "collumn", md: "row" }}
@@ -30,7 +36,7 @@ const SearchBar = () => {
           height: { xs: "35px", md: "50px" },
           borderRadius: 15,
           border: "0.8px solid black",
-          // backgroundColor: "yellow",
+          boxShadow: "none",
         }}
       >
         <InputBase
@@ -38,7 +44,7 @@ const SearchBar = () => {
           sx={{ ml: 1, flex: 1 }}
           inputProps={{ "aria-label": "search recipe" }}
         />
-        <IconButton type="button" sx={{ p: "5px" }} aria-label="search">
+        <IconButton type="button" aria-label="search">
           <SearchIcon />
         </IconButton>
       </Paper>
@@ -50,9 +56,24 @@ const SearchBar = () => {
         alignItems="center"
         sx={{ width: { xs: "100%", md: "50%" } }}
       >
-        <button className="recipe-button">CREATE RECIPE</button>
-        <Stack
+        <Button
+          onClick={handleCreateButton}
           sx={{
+            borderRadius: "20px",
+            backgroundColor: "#FFFFFFBF",
+            width: "100px",
+            height: "100px",
+            fontWeight: "bold",
+            fontSize: "1rem",
+            border: "black solid 0.8px",
+          }}
+        >
+          CREATE RECIPE
+        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
             // alignSelf: "center",
             textAlign: "center",
             justifyContent: "center",
@@ -70,8 +91,8 @@ const SearchBar = () => {
           >
             50
           </Typography>
-          <Typography variant="h6">recipes</Typography>
-        </Stack>
+          <Typography variant="subtitle1">recipes</Typography>
+        </Box>
       </Stack>
     </Stack>
   );

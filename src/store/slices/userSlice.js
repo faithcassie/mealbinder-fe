@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     isDeleted: false,
   },
   reducers: {
-    addRecipe: (state, action) => {
+    editUser: (state, action) => {
       console.log(state);
     },
   },

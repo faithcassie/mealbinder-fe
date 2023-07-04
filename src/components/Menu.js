@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import InsightsIcon from "@mui/icons-material/Insights";
@@ -21,11 +21,12 @@ import InfoIcon from "@mui/icons-material/Info";
 import SettingsIcon from "@mui/icons-material/Settings";
 import EmailIcon from "@mui/icons-material/Email";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import Insights from "./Insights";
-import Recipe from "./Recipe";
-import Planner from "./Planner";
+import Insights from "../pages/InsightsPage";
+import Recipe from "../pages/HomePage";
+import Planner from "../pages/PlannerPage";
 
 const Menu = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -107,7 +108,11 @@ const Menu = () => {
             </ListItemButton>
           </ListItem>
         </List>
-        <Button sx={{ pt: "100px" }} startIcon={<ExitToAppIcon />}>
+        <Button
+          onClick={() => navigate("/login", { replace: true })}
+          sx={{ pt: "100px" }}
+          startIcon={<ExitToAppIcon />}
+        >
           Sign out
         </Button>
       </SwipeableDrawer>

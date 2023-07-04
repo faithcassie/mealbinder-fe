@@ -47,7 +47,7 @@ const RegistrationPage = () => {
     } catch (error) {
       reset();
       setError("responseError", error);
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -101,7 +101,9 @@ const RegistrationPage = () => {
             By submitting, you agree to our Term and Privacy Policy.
           </Typography>
           <Stack spacing={3} direction="row" paddingTop="50px">
-            <Button variant="text">Cancel</Button>
+            <Button variant="text" onClick={() => reset()}>
+              Cancel
+            </Button>
             <LoadingButton
               type="submit"
               variant="contained"

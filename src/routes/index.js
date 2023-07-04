@@ -4,11 +4,13 @@ import BlankLayout from "../layouts/BlankLayout";
 import RegistrationPage from "../pages/RegistrationPage";
 import LoginPage from "../pages/LoginPage";
 import AuthRequire from "./AuthRequire";
-import Dashboard from "../pages/Dashboard";
+import RecipePage from "../pages/RecipePage";
 import MainLayout from "../layouts/MainLayout";
-import Recipe from "../components/Recipe";
-import Insights from "../components/Insights";
-import Planner from "../components/Planner";
+// import Planner from "../pages/PlannerPage";
+import HomePage from "../pages/HomePage";
+import InsightsPage from "../pages/InsightsPage";
+import PlannerPage from "../pages/PlannerPage";
+import CreateRecipe from "../components/CreateRecipe";
 
 const Router = () => {
   return (
@@ -21,9 +23,12 @@ const Router = () => {
           </AuthRequire>
         }
       >
-        <Route index element={<Recipe />} />
-        <Route path="/insights" element={<Insights />} />
-        <Route path="/planner" element={<Planner />} />
+        <Route index element={<HomePage />} />
+        {/* <Route path="recipes" element={<Recipe />} /> */}
+        <Route path="recipes/:id" element={<RecipePage />} />
+        <Route path="recipes/create" element={<CreateRecipe />} />
+        <Route path="insights" element={<InsightsPage />} />
+        <Route path="planner" element={<PlannerPage />} />
       </Route>
       <Route element={<BlankLayout />}>
         <Route path="/register" element={<RegistrationPage />} />

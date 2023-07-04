@@ -106,7 +106,9 @@ const LoginPage = () => {
           </Stack>
 
           <Stack spacing={3} direction="row" paddingTop="50px">
-            <Button variant="text">Cancel</Button>
+            <Button variant="text" onClick={() => reset()}>
+              Cancel
+            </Button>
             <LoadingButton
               type="submit"
               loading={isSubmitting}
