@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { toast } from "react-toastify";
 import apiService from "../../api/apiService";
 
 const initialState = {
@@ -7,6 +6,7 @@ const initialState = {
   isLoading: false,
   error: null,
   totalIngredients: null,
+  selectedIngredient: null,
 };
 
 export const ingredientSlice = createSlice({
@@ -23,6 +23,9 @@ export const ingredientSlice = createSlice({
     updateIngredientArrSuccess(state, action) {
       state.ingredientArr = action.payload;
     },
+    updateSelectedIngredient(state, action) {
+      state.selectedIngredient = action.payload;
+    },
     getAllIngredientsSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
@@ -31,15 +34,16 @@ export const ingredientSlice = createSlice({
     addIngredientSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      const { ingredient, count } = action.payload;
-      state.ingredientArr.push(ingredient); //obj?
-      state.totalIngredients = count;
+      const newIngredient = action.payload;
+      state.ingredientArr.push(newIngredient); //obj?
+      // state.totalIngredients = count;
+      state.selectedIngredient = newIngredient;
     },
   },
   extraReducers: {},
 });
 
-export const {} = ingredientSlice.actions;
+export const { updateSelectedIngredient } = ingredientSlice.actions;
 
 export const addIngredient =
   ({ ingredient }) =>

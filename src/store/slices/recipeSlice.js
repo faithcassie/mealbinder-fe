@@ -10,6 +10,10 @@ export const recipeSlice = createSlice({
     error: null,
     totalRecipes: null,
     recipeList: [],
+    recipeData: null,
+    // tagList: null,
+    recipeImage: "",
+    newRecipe: null,
   },
   reducers: {
     startLoading(state) {
@@ -22,42 +26,67 @@ export const recipeSlice = createSlice({
     editRecipe: (state, action) => {
       state.isEditing = true;
     },
-
     createRecipeSuccess: (state, action) => {
       state.isLoading = false;
       state.error = null;
       const newRecipe = action.payload;
-      state.recipeList[newRecipe._id] = newRecipe;
+      state.recipeList.push(newRecipe);
+      state.newRecipe = action.payload;
+    },
+    getRecipesSuccess: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.recipeList = action.payload; // ?
+    },
+    getRecipeDetailsSuccess: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.recipeData = action.payload;
+    },
+    updateRecipeImage: (state, action) => {
+      state.recipeImage = action.payload;
     },
   },
   extraReducers: {},
 });
 
-export const { editRecipe } = recipeSlice.actions;
+export const { editRecipe, updateRecipeImage } = recipeSlice.actions;
 
-export const getRecipes =
-  ({ userId }) =>
-  async (dispatch) => {
-    dispatch(recipeSlice.actions.startLoading());
-    try {
-      const response = await apiService.get(`/recipes`);
-    } catch (error) {
-      dispatch(recipeSlice.actions.hasError(error.message));
-    }
-  };
+export const getRecipes = () => async (dispatch) => {
+  dispatch(recipeSlice.actions.startLoading());
+  try {
+    const response = await apiService.get(`/recipes`);
+    dispatch(recipeSlice.actions.getRecipesSuccess(response.data));
+    // console.log(response.data);
+  } catch (error) {
+    dispatch(recipeSlice.actions.hasError(error.message));
+  }
+};
+
+export const getRecipeDetails = (recipeId) => async (dispatch) => {
+  dispatch(recipeSlice.actions.startLoading());
+  try {
+    const response = await apiService.get(`/recipes/${recipeId}`);
+    dispatch(recipeSlice.actions.getRecipeDetailsSuccess(response.data));
+    console.log(response.data);
+  } catch (error) {
+    dispatch(recipeSlice.actions.hasError(error.message));
+  }
+};
 
 export const createRecipe =
-  ({ title, measurement, ingredientList, instructions }) =>
+  ({ title, ingredientList, instructions, tagList, imageUrl }) =>
   async (dispatch) => {
     dispatch(recipeSlice.actions.startLoading());
     try {
       const response = await apiService.post("/recipes", {
         title,
-        measurement,
         ingredientList,
         instructions,
+        tagList,
+        imageUrl,
       });
-      // dispatch(createRecipeSuccess(response.data));
+      dispatch(recipeSlice.actions.createRecipeSuccess(response.data));
       // dispatch(getRecipes);
     } catch (error) {
       dispatch(recipeSlice.actions.hasError(error.message));

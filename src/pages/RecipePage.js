@@ -1,21 +1,28 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import recipes from "../recipes.json";
-// import TagsButton from "../components/TagsButton";
 import ViewRecipe from "../components/ViewRecipe";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EditRecipe from "../components/EditRecipe";
+import { getRecipeDetails } from "../store/slices/recipeSlice";
+import { Container } from "@mui/material";
 
 const RecipePage = () => {
-  const { isEditing } = useSelector((state) => state.recipe);
-  const { id } = useParams();
-  let recipeData = recipes.data;
+  const { recipeData } = useSelector((state) => state.recipe);
+  const dispatch = useDispatch();
+  const params = useParams();
+  const recipeId = params.id;
+  useEffect(() => {
+    dispatch(getRecipeDetails(recipeId));
+  }, [recipeId]);
 
-  return isEditing ? (
-    <EditRecipe id={id} recipeData={recipeData} />
-  ) : (
-    <ViewRecipe id={id} recipeData={recipeData} />
-  );
+  console.log(recipeData);
+
+  // return isEditing ? (
+  //   <EditRecipe id={recipeId} recipeData={recipeData} />
+  // ) : (
+  return recipeData && <ViewRecipe id={recipeId} recipeData={recipeData} />;
+  // );
 };
 
 export default RecipePage;

@@ -1,14 +1,19 @@
 import { Container, Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Filter from "../components/Filter";
 import RecipeCard from "../components/RecipeCard";
 import recipes from "../recipes.json";
 import SearchBar from "../components/SearchBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipes } from "../store/slices/recipeSlice";
 
 const HomePage = () => {
-  const { isCreating } = useSelector((state) => state.recipe);
-  // console.log(recipes);
+  const { recipeList } = useSelector((state) => state.recipe);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipes());
+  }, []);
+  // console.log(recipeList);
   return (
     <Container sx={{ mt: 5 }}>
       <SearchBar />
@@ -17,14 +22,14 @@ const HomePage = () => {
         container
         width="100%"
         direction="row"
-        justifyContent="left"
         mt={3}
+        justifyContent="center"
         // sx={{ backgroundColor: "yellow" }}
       >
-        {recipes &&
-          recipes.data.map((recipe) => (
-            <Grid item key={recipe.id} paddingBottom={3} pr={3}>
-              <RecipeCard key={recipe.id} value={recipe} />
+        {recipeList &&
+          recipeList.map((recipe) => (
+            <Grid item key={recipe._id} paddingBottom={3} pr={3} mr={5}>
+              <RecipeCard key={recipe._id} recipe={recipe} />
             </Grid>
           ))}
       </Grid>

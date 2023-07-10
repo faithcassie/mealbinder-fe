@@ -8,18 +8,20 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipeDetails } from "../store/slices/recipeSlice";
 
-const RecipeCard = ({ value }) => {
-  // console.log(value.id);
-  let key = value.id;
+const RecipeCard = ({ recipe }) => {
+  let recipeId = recipe._id;
+
   return (
     <Card
-      key={key}
+      key={recipeId}
       sx={{
-        maxWidth: "250px",
+        width: "300px",
         minHeight: "300px",
         // borderRadius: "20px",
         border: "solid black 0.7px",
@@ -30,12 +32,12 @@ const RecipeCard = ({ value }) => {
         // backgroundColor: "red",
       }}
     >
-      <CardActionArea component={Link} to={`recipes/${key}`}>
+      <CardActionArea component={Link} to={`recipes/${recipeId}`}>
         <CardMedia
           component="img"
           height="200px"
-          alt={value.title}
-          image={value.url}
+          alt={recipe.title}
+          image={recipe.imageUrl}
         />
       </CardActionArea>
 
@@ -48,13 +50,22 @@ const RecipeCard = ({ value }) => {
           alignItems: "left",
         }}
       >
-        <Typography variant="subtitle1">{value.title}</Typography>
+        <Typography variant="subtitle1">{recipe.title}</Typography>
 
         <Stack direction="row" alignItems="center">
-          <Link className="link" to={`recipes/${key}`}>
+          <Link className="link" to={`recipes/${recipeId}`}>
             Details
           </Link>
-          <IconButton sx={{ pl: 2 }} aria-label="add to planner">
+          <IconButton
+            sx={{
+              pl: 2,
+              "&.MuiButtonBase-root:hover": {
+                backgroundColor: "transparent",
+                color: "#AB6614",
+              },
+            }}
+            aria-label="add to planner"
+          >
             <ControlPointIcon />
           </IconButton>
         </Stack>

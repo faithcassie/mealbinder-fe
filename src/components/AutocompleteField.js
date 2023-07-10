@@ -1,10 +1,11 @@
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import { TextField } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addIngredient,
   getAllIngredients,
+  updateSelectedIngredient,
 } from "../store/slices/ingredientSlice";
 import debounce from "lodash.debounce";
 
@@ -16,14 +17,6 @@ const AutocompleteField = () => {
   });
   const { ingredientArr } = useSelector((state) => state.ingredient);
   const [options, setOptions] = useState([]);
-
-  // useEffect(() => {
-  //   dispatch(getAllIngredients());
-  // },[]);
-  console.log(ingredientArr);
-  //   const handleInputChange = (e) => {
-  //     handleSearch(e.target.value);
-  //   };
 
   const handleSearch = async (searchTerm) => {
     dispatch(getAllIngredients(searchTerm));
@@ -42,13 +35,18 @@ const AutocompleteField = () => {
   const debouncedSearch = debounce(handleSearch, 300, { trailing: true });
 
   const handleAutocompleteChange = (e, newValue) => {
+    console.log(newValue);
+
     // maybe add ingredient to database
+
     if (newValue && newValue.ingredientName.includes("Add")) {
       setOptionTerm({ ingredientName: searchTerm });
+      //   dispatch(updateSelectedIngredient(searchTerm));
       dispatch(addIngredient({ ingredient: searchTerm }));
+    } else {
+      dispatch(updateSelectedIngredient(newValue));
     }
   };
-  console.log(options);
 
   return (
     <Autocomplete
@@ -56,9 +54,7 @@ const AutocompleteField = () => {
       value={optionTerm}
       onChange={handleAutocompleteChange}
       inpuValue={searchTerm}
-      //   onInputChange={handleInputChange}
       onInputChange={(event, newInputValue) => {
-        // console.log(newInputValue);
         debouncedSearch(newInputValue);
       }}
       options={options}

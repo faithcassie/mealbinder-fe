@@ -64,5 +64,18 @@ body {
 }
 .illust:hover {
   transform: rotate(5deg);
- 
+}
+.image-input {
+  height: 30px;
+  width: 300px;
+  position: absolute;
+  z-index: 100;
+  color: rgb(0, 0, 0);
+  background-color: #ffffffc8;
+  text-align: center;
+}
+.image-dev {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }

@@ -4,6 +4,7 @@ import DropdownButton from "../components/DropdownButton";
 import {
   Box,
   Button,
+  Chip,
   Container,
   List,
   ListItem,
@@ -17,19 +18,17 @@ const ViewRecipe = ({ id, recipeData }) => {
   const handleClick = () => {
     dispatch(editRecipe());
   };
-
+  recipeData.tagList.map((item) => {
+    console.log(item.tag.tag);
+    console.log(item.tag._id);
+  });
   return (
     <Stack direction="row" spacing={2}>
       <Container sx={{ minHeight: "90vh", width: "40%" }}>
-        <Typography variant="h5" textAlign="center" pt={5}>
-          {recipeData[Number(id)].title}
+        <Typography variant="h4" textAlign="center" pt={5}>
+          {recipeData.title}
         </Typography>
-        <Typography variant="subtitle1" textAlign="center" pt={5}>
-          {recipeData[id].cooking_time
-            ? `Cooking time: ${recipeData[id].cooking_time}`
-            : "Cooking time: NaN"}
-        </Typography>
-        <Typography variant="subtitle1" sx={{ mt: 5, ml: 5 }}>
+        <Typography variant="h6" sx={{ mt: 5, ml: 5 }}>
           Ingredients
         </Typography>
         <Box
@@ -44,18 +43,43 @@ const ViewRecipe = ({ id, recipeData }) => {
             py: 3,
             px: 5,
             mt: 2,
-            // borderRadius: 10,
-            // border: "solid black 0.9px",
           }}
         >
           <List>
-            {recipeData[id].ingredients.map((ingredient) => (
-              <ListItem key={ingredient.id}>{ingredient}</ListItem>
+            {recipeData.ingredientList.map((item) => (
+              <ListItem
+                key={item._id}
+              >{`${item.measurement} ${item.ingredient.ingredientName}`}</ListItem>
             ))}
           </List>
         </Box>
-        <Stack direction="row">
-          <DropdownButton />
+        <Typography variant="h6" sx={{ mt: 5, ml: 5 }}>
+          Tags
+        </Typography>
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            backgroundColor: "#FFFFFFBF",
+            width: "100%",
+            height: "auto",
+            paddingLeft: 5,
+            paddingY: 2,
+            position: "relative",
+          }}
+        >
+          {recipeData.tagList.map((item) => (
+            // console.log(item.tag);
+            <Chip
+              key={item.tag._id}
+              sx={{
+                // backgroundColor: "red",
+                position: "relative",
+                zIndex: "100",
+              }}
+              label={item.tag.tag}
+            />
+          ))}
         </Stack>
       </Container>
       <Container sx={{ minHeight: "90vh", width: "60%" }}>
@@ -67,13 +91,10 @@ const ViewRecipe = ({ id, recipeData }) => {
             pt: 3,
           }}
         >
-          <img
-            width="60%"
-            alt={recipeData[id].title}
-            src={recipeData[id].url}
-          />
+          <img height="200" alt={recipeData.title} src={recipeData.imageUrl} />
           <Box
             sx={{
+              // width: "40%",
               display: "flex",
               flexDirection: "column",
               alignSelf: "center",
@@ -89,12 +110,12 @@ const ViewRecipe = ({ id, recipeData }) => {
             <Button variant="text">Cancel</Button>
           </Box>
         </Stack>
-        <Typography variant="subtitle1" sx={{ mt: 5, ml: 5 }}>
+        <Typography variant="h6" sx={{ mt: 5, ml: 5 }}>
           Instructions
         </Typography>
         <Box
           sx={{
-            height: "400px",
+            height: "auto",
             overflow: "auto",
             "&::-webkit-scrollbar": {
               display: "none", // Hide the scrollbar
@@ -104,11 +125,11 @@ const ViewRecipe = ({ id, recipeData }) => {
             py: 3,
             px: 5,
             mt: 2,
-            // borderRadius: 10,
-            // border: "solid black 0.9px",
           }}
         >
-          {recipeData[id].instructions}
+          {recipeData.instructions.split("\n").map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
         </Box>
       </Container>
     </Stack>

@@ -3,6 +3,7 @@ import { recipeSlice } from "./slices/recipeSlice";
 import { userSlice } from "./slices/userSlice";
 import { plannerSlice } from "./slices/plannerSlice";
 import { ingredientSlice } from "./slices/ingredientSlice";
+import { tagSlice } from "./slices/tagSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     recipe: recipeSlice.reducer,
     planner: plannerSlice.reducer,
     user: userSlice.reducer,
+    tag: tagSlice.reducer,
   },
 });
 
