@@ -8,9 +8,26 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getAllTags } from "../store/slices/tagSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipes } from "../store/slices/recipeSlice";
 
 const Filter = ({ sx }) => {
+  const dispatch = useDispatch();
+  const { tagList } = useSelector((state) => state.tag);
+
+  const [searchTag, setSearchTag] = useState("");
+  useEffect(() => {
+    dispatch(getAllTags());
+  }, []);
+  const handleChange = (event) => {
+    const searchTerm = event.target.value.tag;
+    let searchTagId = event.target.value._id;
+    dispatch(getRecipes({ tag: searchTagId }));
+    setSearchTag(searchTerm);
+  };
+  // console.log(tagList);
   return (
     <Stack
       direction="row"
@@ -29,51 +46,24 @@ const Filter = ({ sx }) => {
         <InputLabel id="filter-input">Tags</InputLabel>
         <Select
           label="Tags"
+          value={searchTag}
+          onChange={handleChange}
           sx={{
             marginY: 1,
             height: "35px",
           }}
         >
-          <Box width="auto" sx={{ justifyContent: "left" }}>
-            <MenuItem>
-              <CheckBox />
-              <p>A fhsdiufa fiuahsdj f awehfeu</p>
-            </MenuItem>
-            <MenuItem>
-              <CheckBox />
-              <p>A</p>
-            </MenuItem>
-            {/* </Stack> */}
-          </Box>
+          <MenuItem value="">None</MenuItem>
+          {tagList.map((item) => {
+            return (
+              <MenuItem key={item._id} value={item}>
+                {item.tag}
+              </MenuItem>
+            );
+          })}
+          {/* </Box> */}
         </Select>
       </FormControl>
-      {/* <FormControl
-        sx={{
-          mx: 0,
-          minWidth: 120,
-          ...sx,
-        }}
-      >
-        <InputLabel id="filter-input">Cuisines</InputLabel>
-        <Select
-          label="Cuisines"
-          sx={{
-            marginY: 1,
-            height: "35px",
-          }}
-        >
-          <Box width="auto" sx={{ justifyContent: "left" }}>
-            <MenuItem>
-              <CheckBox />
-              <p>A fhsdiufa </p>
-            </MenuItem>
-            <MenuItem>
-              <CheckBox />
-              <p>A</p>
-            </MenuItem>
-          </Box>
-        </Select>
-      </FormControl> */}
     </Stack>
   );
 };

@@ -1,10 +1,12 @@
 * {
   font-family: 'Lato', sans-serif;
   box-sizing: border-box;
+  /* height: 100%; */
 }
 body {
+  padding: 0;
   margin: 0;
-
+  height: 100%;
 }
 .background {
   padding: 0;
@@ -12,6 +14,7 @@ body {
   background-image: url("./assets/repeat-pattern.jpeg");
   background-size: 500px;
   background-repeat: repeat;
+  height: 100%;
 }
 
 .link {

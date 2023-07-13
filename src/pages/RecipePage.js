@@ -8,21 +8,21 @@ import { getRecipeDetails } from "../store/slices/recipeSlice";
 import { Container } from "@mui/material";
 
 const RecipePage = () => {
-  const { recipeData } = useSelector((state) => state.recipe);
+  const { recipeData, isEditing } = useSelector((state) => state.recipe);
   const dispatch = useDispatch();
   const params = useParams();
   const recipeId = params.id;
   useEffect(() => {
     dispatch(getRecipeDetails(recipeId));
-  }, [recipeId]);
+  }, []);
 
-  console.log(recipeData);
+  if (isEditing && recipeData) {
+    return <EditRecipe id={recipeId} recipeData={recipeData} />;
+  } else if (recipeData) {
+    return <ViewRecipe recipeId={recipeId} recipeData={recipeData} />;
+  }
 
-  // return isEditing ? (
-  //   <EditRecipe id={recipeId} recipeData={recipeData} />
-  // ) : (
-  return recipeData && <ViewRecipe id={recipeId} recipeData={recipeData} />;
-  // );
+  return;
 };
 
 export default RecipePage;

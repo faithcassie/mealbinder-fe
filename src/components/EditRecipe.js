@@ -15,14 +15,88 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DropdownButton from "./DropdownButton";
+import {
+  editRecipe,
+  updateRecipe,
+  updateRecipeImage,
+} from "../store/slices/recipeSlice";
+import AutocompleteField from "./AutocompleteField";
+import { useDispatch, useSelector } from "react-redux";
+import { ImageUpload } from "../utils/cloudinary";
+import TagField from "./TagField";
 
-const EditRecipe = ({ id, recipeData }) => {
-  const [title, setTitle] = React.useState(recipeData[id].title);
+const EditRecipe = ({ recipeData }) => {
+  console.log(recipeData);
+  const dispatch = useDispatch();
+  const [title, setTitle] = React.useState(recipeData.title);
+  const [measurement, setMeasurement] = useState("");
+  const [instructions, setInstructions] = useState(recipeData.instructions);
+  const [ingredientList, setIngredientList] = useState(
+    recipeData.ingredientList
+  );
+  const { selectedIngredient } = useSelector((state) => state.ingredient);
+  const { recipeImage } = useSelector((state) => state.recipe);
+  const { selectedTags } = useSelector((state) => state.tag);
+  const [combinedArr, setCombinedArr] = useState([]);
+  let updatedIngredientList = ingredientList.map((item) => ({
+    measurement: item.measurement,
+    ingredient: item.ingredient._id,
+  }));
+
+  const combineIngredients = () => {
+    const combined = measurement + " " + selectedIngredient.ingredientName;
+    const updatedCombinedArr = [...combinedArr, combined];
+    setCombinedArr(updatedCombinedArr);
+    const newIngredient = {
+      measurement,
+      ingredient: selectedIngredient,
+    };
+
+    const updatedIngredient = {
+      measurement,
+      ingredient: selectedIngredient._id,
+    };
+
+    updatedIngredientList.push(updatedIngredient);
+    const displayIngredientList = [...ingredientList, newIngredient];
+    setIngredientList(displayIngredientList);
+    setMeasurement("");
+  };
+
   const handleChange = (event) => {
+    setInstructions(event.target.value);
+  };
+
+  const deleteIngredient = (index) => {
+    const updateCombinedArr = [...combinedArr];
+    updateCombinedArr.splice(index, 1);
+    setCombinedArr(updateCombinedArr);
+  };
+
+  const handleSubmit = () => {
+    const tagIds = selectedTags
+      .filter((tag) => tag !== null && tag._id !== undefined)
+      .map((tag) => ({ tag: tag._id }));
+    console.log("submit recipe???");
+    dispatch(
+      updateRecipe({
+        recipeId: recipeData._id,
+        title,
+        ingredientList: updatedIngredientList,
+        instructions,
+        tagList: tagIds,
+        imageUrl: recipeImage,
+      })
+    );
+    dispatch(updateRecipeImage(""));
+    dispatch(editRecipe(false));
+  };
+
+  const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
   return (
@@ -40,9 +114,9 @@ const EditRecipe = ({ id, recipeData }) => {
           }}
         >
           <OutlinedInput
-            onChange={handleChange}
+            onChange={handleTitleChange}
             value={title}
-            placeholder={recipeData[id].title}
+            placeholder={recipeData.title}
             // sx={{ ml: 1, flex: 1 }}
             sx={{
               width: "100%",
@@ -75,6 +149,9 @@ const EditRecipe = ({ id, recipeData }) => {
               inputProps={{
                 "aria-label": "weight",
               }}
+              name="measurement"
+              value={measurement}
+              onChange={(e) => setMeasurement(e.target.value)}
             />
             <FormHelperText
               sx={{ color: "black" }}
@@ -83,7 +160,8 @@ const EditRecipe = ({ id, recipeData }) => {
               Measurements
             </FormHelperText>
           </FormControl>
-          <FormControl
+          <AutocompleteField />
+          {/* <FormControl
             sx={{
               mr: 1,
               display: "flex",
@@ -110,8 +188,9 @@ const EditRecipe = ({ id, recipeData }) => {
             >
               Ingredients
             </FormHelperText>
-          </FormControl>
+          </FormControl> */}
           <IconButton
+            onClick={() => combineIngredients()}
             sx={{
               display: "block",
               position: "relative",
@@ -141,21 +220,25 @@ const EditRecipe = ({ id, recipeData }) => {
           }}
         >
           <List>
-            {recipeData[id].ingredients.map((ingredient) => (
-              <ListItem
-                key={ingredient.id}
-                secondaryAction={
-                  <IconButton aria-label="delete">
-                    <DeleteOutlineIcon />
-                  </IconButton>
-                }
-              >
-                {ingredient}
+            {ingredientList.map((item, index) => (
+              <ListItem key={item.id}>
+                {`${item.measurement} ${item.ingredient.ingredientName}`}
+                <RemoveCircleOutlineIcon
+                  onClick={() => deleteIngredient(index)}
+                  sx={{
+                    display: "block",
+                    width: "16px",
+                    height: "16px",
+                    color: "#AB6614",
+                    ml: 2,
+                  }}
+                />
               </ListItem>
             ))}
           </List>
         </Box>
-        <DropdownButton />
+        {/* tag list */}
+        <TagField presetValues={recipeData.tagList.map((item) => item.tag)} />
       </Container>
       <Container sx={{ minHeight: "90vh", width: "50%" }}>
         <Stack
@@ -166,11 +249,7 @@ const EditRecipe = ({ id, recipeData }) => {
             pt: 3,
           }}
         >
-          <img
-            width="60%"
-            alt={recipeData[id].title}
-            src={recipeData[id].url}
-          />
+          <ImageUpload />
           <Box
             sx={{
               display: "flex",
@@ -179,21 +258,39 @@ const EditRecipe = ({ id, recipeData }) => {
             }}
           >
             <Button
+              onClick={handleSubmit}
               variant="contained"
               sx={{ backgroundColor: "#AB6614", boxShadow: "none" }}
             >
               Save
             </Button>
-            <Button variant="text">Cancel</Button>
+            <Button onClick={() => dispatch(editRecipe(false))} variant="text">
+              Cancel
+            </Button>
           </Box>
         </Stack>
         <Typography variant="subtitle1" sx={{ mt: 5, ml: 5 }}>
           Instructions
         </Typography>
-        <Box
+        <TextField
+          multiline
+          fullWidth
+          value={instructions}
+          onChange={handleChange}
           sx={{
             height: "400px",
             overflow: "auto",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                border: "none",
+              },
+              "&:hover fieldset": {
+                border: "none",
+              },
+              "&.Mui-focused fieldset": {
+                border: "none",
+              },
+            },
             "&::-webkit-scrollbar": {
               display: "none", // Hide the scrollbar
             },
@@ -202,12 +299,8 @@ const EditRecipe = ({ id, recipeData }) => {
             py: 3,
             px: 5,
             mt: 2,
-            // borderRadius: 10,
-            // border: "solid black 0.9px",
           }}
-        >
-          {recipeData[id].instructions}
-        </Box>
+        />
       </Container>
     </Stack>
   );

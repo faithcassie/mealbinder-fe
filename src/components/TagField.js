@@ -2,19 +2,27 @@ import * as React from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTagList } from "../store/slices/recipeSlice";
+import { getTagsbyRecipeId, updateTagList } from "../store/slices/recipeSlice";
 import {
   addNewTag,
   getAllTags,
   updateSelectedTags,
 } from "../store/slices/tagSlice";
+import { useParams } from "react-router-dom";
 
 const filter = createFilterOptions();
 
-export default function TagField() {
+export default function TagField({ presetValues = [] }) {
   const dispatch = useDispatch();
+  const params = useParams();
+  const recipeId = params.id;
+  // if (recipeId) {
+  //   dispatch(getTagsbyRecipeId({ recipeId }));
+  // }
   const { tagList } = useSelector((state) => state.tag);
-  const [value, setValue] = React.useState([]);
+
+  const [value, setValue] = React.useState(presetValues);
+  console.log(value);
   React.useEffect(() => {
     dispatch(getAllTags());
   }, []);
@@ -60,17 +68,12 @@ export default function TagField() {
           setValue(newValue);
           dispatch(addNewTag({ tag: lastTag.inputValue }));
         } else {
-          console.log(newValue);
           setValue(newValue);
         }
       }}
       filterOptions={(options, params) => {
         const filtered = filter(options, params);
-
         const { inputValue } = params;
-        console.log(params);
-        console.log(inputValue);
-        console.log(options);
         // Suggest the creation of a new value
         const isExisting = options.some((option) => inputValue === option.tag);
         if (inputValue !== "" && !isExisting) {

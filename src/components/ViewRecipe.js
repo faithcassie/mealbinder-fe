@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import DropdownButton from "../components/DropdownButton";
 import {
@@ -11,19 +11,30 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { editRecipe } from "../store/slices/recipeSlice";
+import {
+  editRecipe,
+  getRecipeDetails,
+  updateRecipe,
+  updateRecipeImage,
+} from "../store/slices/recipeSlice";
+import { useNavigate } from "react-router-dom";
 
-const ViewRecipe = ({ id, recipeData }) => {
+const ViewRecipe = ({ recipeId, recipeData }) => {
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(editRecipe());
+    dispatch(editRecipe(true));
+    dispatch(updateRecipeImage(recipeData.imageUrl));
   };
-  recipeData.tagList.map((item) => {
-    console.log(item.tag.tag);
-    console.log(item.tag._id);
-  });
+  useEffect(() => {
+    dispatch(getRecipeDetails(recipeId));
+  }, []);
+  // recipeData.tagList.map((item) => {
+  //   console.log(item.tag.tag);
+  //   console.log(item.tag._id);
+  // });
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} paddingTop={5}>
       <Container sx={{ minHeight: "90vh", width: "40%" }}>
         <Typography variant="h4" textAlign="center" pt={5}>
           {recipeData.title}
@@ -115,7 +126,7 @@ const ViewRecipe = ({ id, recipeData }) => {
         </Typography>
         <Box
           sx={{
-            height: "auto",
+            height: "400px",
             overflow: "auto",
             "&::-webkit-scrollbar": {
               display: "none", // Hide the scrollbar

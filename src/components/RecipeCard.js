@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipeDetails } from "../store/slices/recipeSlice";
 
 const RecipeCard = ({ recipe }) => {
+  const dispatch = useDispatch();
+  const { recipeData } = useSelector((state) => state.recipe);
   let recipeId = recipe._id;
 
   return (

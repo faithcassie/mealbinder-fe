@@ -30,8 +30,8 @@ const CreateRecipe = () => {
   const [instructions, setInstructions] = useState("");
   const [ingredientList, setIngredientList] = useState([]); // ingredient obj & measurement string
   const { selectedIngredient } = useSelector((state) => state.ingredient);
-  const { recipeImage, newRecipe } = useSelector((state) => state.recipe);
-  const { tagList, selectedTags } = useSelector((state) => state.tag);
+  const { recipeImage } = useSelector((state) => state.recipe);
+  const { selectedTags } = useSelector((state) => state.tag);
   const [combinedArr, setCombinedArr] = useState([]);
   const navigate = useNavigate();
 
@@ -77,7 +77,7 @@ const CreateRecipe = () => {
       })
     );
     dispatch(updateRecipeImage(""));
-    console.log(newRecipe.id);
+    // console.log(newRecipe.id);
     navigate("/");
   };
 
@@ -206,12 +206,6 @@ const CreateRecipe = () => {
             pt: 3,
           }}
         >
-          {/* <FUploadImage
-            name="image"
-            accept="image/*"
-            maxSize={3145728}
-            onDrop={handleDrop}
-          /> */}
           <ImageUpload />
 
           <Box

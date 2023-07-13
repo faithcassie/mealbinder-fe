@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   tagList: [],
   selectedTags: [],
+  allTags: [],
 };
 
 export const tagSlice = createSlice({

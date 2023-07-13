@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Pagination } from "@mui/material";
 import React, { useEffect } from "react";
 import Filter from "../components/Filter";
 import RecipeCard from "../components/RecipeCard";
@@ -6,14 +6,16 @@ import recipes from "../recipes.json";
 import SearchBar from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../store/slices/recipeSlice";
+import { getAllTags } from "../store/slices/tagSlice";
 
 const HomePage = () => {
-  const { recipeList } = useSelector((state) => state.recipe);
+  const { recipeList, totalPage } = useSelector((state) => state.recipe);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipes());
+    dispatch(getRecipes({}));
   }, []);
-  // console.log(recipeList);
+  // console.log(tagList);
   return (
     <Container sx={{ mt: 5 }}>
       <SearchBar />
@@ -24,7 +26,6 @@ const HomePage = () => {
         direction="row"
         mt={3}
         justifyContent="center"
-        // sx={{ backgroundColor: "yellow" }}
       >
         {recipeList &&
           recipeList.map((recipe) => (
@@ -33,6 +34,16 @@ const HomePage = () => {
             </Grid>
           ))}
       </Grid>
+      <Pagination
+        sx={{
+          py: 3,
+          display: "flex",
+          justifyContent: "center",
+        }}
+        count={totalPage}
+        showFirstButton
+        showLastButton
+      />
     </Container>
   );
 };

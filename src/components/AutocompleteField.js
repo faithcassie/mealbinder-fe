@@ -60,7 +60,7 @@ const AutocompleteField = () => {
       options={options}
       getOptionLabel={(option) => (option ? option.ingredientName : "")}
       renderInput={(params) => {
-        console.log(params);
+        // console.log(params);
         return (
           <TextField
             sx={{ backgroundColor: "#ffffffc8" }}

@@ -9,8 +9,7 @@ import { selectingDate } from "../store/slices/plannerSlice";
 const Calendar = () => {
   //   const [selectDate, setSelectDate] = React.useState(new Date());
   const { selectDate } = useSelector((state) => state.planner);
-  console.log(typeof selectDate);
-  console.log(selectDate);
+
   const dispatch = useDispatch();
   const handleChange = (date) => {
     dispatch(selectingDate(date));
