@@ -40,6 +40,7 @@ const Filter = ({ sx }) => {
         sx={{
           mx: 3,
           minWidth: 100,
+
           ...sx,
         }}
       >
@@ -51,6 +52,9 @@ const Filter = ({ sx }) => {
           sx={{
             marginY: 1,
             height: "35px",
+            // width: "100px",
+            backgroundColor: "#ffffffc8",
+            borderRadius: "18px",
           }}
         >
           <MenuItem value="">None</MenuItem>

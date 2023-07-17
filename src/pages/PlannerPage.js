@@ -3,8 +3,11 @@ import React from "react";
 import Calendar from "../components/Calendar";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import DailyPlanner from "../components/DailyPlanner";
+import { useSelector } from "react-redux";
 
 const PlannerPage = () => {
+  const { totalMealPrep } = useSelector((state) => state.planner);
+
   return (
     <Stack direction={{ xs: "column", md: "row" }}>
       <Container
@@ -21,7 +24,6 @@ const PlannerPage = () => {
           sx={{
             width: "100%",
             minHeight: 150,
-            // height: { xs: 100, md: "15%" },
             backgroundColor: "#FFFFFFBF",
             justifyContent: "center",
             mb: 5,
@@ -31,7 +33,7 @@ const PlannerPage = () => {
             Meals I have prepped
           </Typography>
           <Typography variant="h3" textAlign="center" pb={2}>
-            200
+            {totalMealPrep}
           </Typography>
         </Box>
         <Calendar />

@@ -17,6 +17,7 @@ export const recipeSlice = createSlice({
     recipeTotal: null,
     totalPage: null,
     tagsByRecipeId: [],
+    searchRecipeTitle: "",
   },
   reducers: {
     startLoading(state) {
@@ -62,11 +63,15 @@ export const recipeSlice = createSlice({
     updateRecipeImage: (state, action) => {
       state.recipeImage = action.payload;
     },
+    updateSearchRecipeTitle: (state, action) => {
+      state.searchRecipeTitle = action.payload;
+    },
   },
   extraReducers: {},
 });
 
-export const { editRecipe, updateRecipeImage } = recipeSlice.actions;
+export const { editRecipe, updateRecipeImage, updateSearchRecipeTitle } =
+  recipeSlice.actions;
 
 export const getRecipes =
   ({ page = 1, limit = RECIPES_PER_PAGE, tag, name }) =>

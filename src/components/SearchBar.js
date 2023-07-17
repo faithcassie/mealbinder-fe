@@ -11,19 +11,23 @@ import React, { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../store/slices/recipeSlice";
+import {
+  getRecipes,
+  updateSearchRecipeTitle,
+} from "../store/slices/recipeSlice";
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { recipeTotal, totalPage } = useSelector((state) => state.recipe);
-  const [searchRecipeTitle, setSearchRecipeTitle] = useState("");
+  const { recipeTotal, totalPage, searchRecipeTitle } = useSelector(
+    (state) => state.recipe
+  );
+  // const [, setSearchRecipeTitle] = useState("");
   const handleCreateButton = () => {
     navigate("recipes/create", { replace: true });
   };
   const handleSearchRecipe = (event) => {
-    // console.log("search recipe");
-    setSearchRecipeTitle(event.target.value);
+    dispatch(updateSearchRecipeTitle(event.target.value));
   };
   useEffect(() => {
     dispatch(getRecipes({ name: searchRecipeTitle }));
@@ -48,8 +52,9 @@ const SearchBar = () => {
           width: { xs: "70%", md: "50%" },
           height: { xs: "35px", md: "50px" },
           borderRadius: 15,
-          border: "0.8px solid black",
+          border: "0.5px solid black",
           boxShadow: "none",
+          backgroundColor: "#ffffffc8",
         }}
       >
         <InputBase
@@ -80,7 +85,14 @@ const SearchBar = () => {
             height: "100px",
             fontWeight: "bold",
             fontSize: "1rem",
-            border: "black solid 0.8px",
+            // border: "black solid 0.8px",
+            "&:hover": {
+              transform: "translateY(-3px)",
+              boxShadow: "0 0 8px 5px #00000015",
+              transitionDuration: "0.3s",
+              backgroundColor: "#F6E7D5",
+              color: "#AB6614",
+            },
           }}
         >
           CREATE RECIPE

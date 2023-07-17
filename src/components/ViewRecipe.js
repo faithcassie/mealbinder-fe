@@ -20,6 +20,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const ViewRecipe = ({ recipeId, recipeData }) => {
+  const navigate = useNavigate();
   // const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = () => {
@@ -29,10 +30,7 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
   useEffect(() => {
     dispatch(getRecipeDetails(recipeId));
   }, []);
-  // recipeData.tagList.map((item) => {
-  //   console.log(item.tag.tag);
-  //   console.log(item.tag._id);
-  // });
+
   return (
     <Stack direction="row" spacing={2} paddingTop={5}>
       <Container sx={{ minHeight: "90vh", width: "40%" }}>
@@ -118,7 +116,9 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
             >
               Edit
             </Button>
-            <Button variant="text">Cancel</Button>
+            <Button onClick={() => navigate("/")} variant="text">
+              Back
+            </Button>
           </Box>
         </Stack>
         <Typography variant="h6" sx={{ mt: 5, ml: 5 }}>

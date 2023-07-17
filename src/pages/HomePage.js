@@ -10,11 +10,12 @@ import { getAllTags } from "../store/slices/tagSlice";
 
 const HomePage = () => {
   const { recipeList, totalPage } = useSelector((state) => state.recipe);
-
+  const [page, setPage] = React.useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipes({}));
-  }, []);
+    console.log(page);
+    dispatch(getRecipes({ page }));
+  }, [page]);
   // console.log(tagList);
   return (
     <Container sx={{ mt: 5 }}>
@@ -30,7 +31,7 @@ const HomePage = () => {
         {recipeList &&
           recipeList.map((recipe) => (
             <Grid item key={recipe._id} paddingBottom={3} pr={3} mr={5}>
-              <RecipeCard key={recipe._id} recipe={recipe} />
+              <RecipeCard isHome={true} key={recipe._id} recipe={recipe} />
             </Grid>
           ))}
       </Grid>
@@ -41,6 +42,8 @@ const HomePage = () => {
           justifyContent: "center",
         }}
         count={totalPage}
+        page={page}
+        onChange={(e, page) => setPage(page)}
         showFirstButton
         showLastButton
       />
