@@ -50,11 +50,11 @@ const DailyPlanner = ({ sx }) => {
   }, [selectDate]);
   // console.log(error);
   return (
-    <Container component="div" sx={{ ...sx }}>
+    <Container component="div">
       <Stack direction="row" sx={{ justifyContent: "space-between", pb: 2 }}>
         <Box>
           <Typography variant="subtitle1">Daily planner</Typography>
-          <Typography variant="h4">{formattedDate}</Typography>
+          <Typography variant="h5">{formattedDate}</Typography>
         </Box>
         <IconButton
           onClick={handleClickOpen}
@@ -72,7 +72,12 @@ const DailyPlanner = ({ sx }) => {
       </Stack>
 
       <Dialog fullWidth maxWidth open={open} onClose={handleClose}>
-        <Box sx={{ margin: 4, width: "fit-content" }}>
+        <Box
+          sx={{
+            margin: 2,
+            width: "auto",
+          }}
+        >
           <AlertMsg />
           <Stack
             direction="row"
@@ -100,10 +105,19 @@ const DailyPlanner = ({ sx }) => {
             direction="row"
             mt={3}
             justifyContent="center"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
           >
             {recipeList &&
               recipeList.map((recipe) => (
-                <Grid item key={recipe._id} paddingBottom={3} pr={3} mr={5}>
+                <Grid
+                  item
+                  key={recipe._id}
+                  paddingBottom={3}
+                  // pr={3}
+                >
                   <RecipeCard isHome={false} key={recipe._id} recipe={recipe} />
                 </Grid>
               ))}
@@ -123,7 +137,7 @@ const DailyPlanner = ({ sx }) => {
         </Box>
       </Dialog>
 
-      <List sx={{ overflow: "auto", height: 500 }}>
+      <List sx={{ overflow: "auto", height: "auto" }}>
         {mealListByDate.length === 0 && (
           <Typography variant="subtitle1">Let's create a meal list!</Typography>
         )}
@@ -131,7 +145,7 @@ const DailyPlanner = ({ sx }) => {
           mealListByDate.map((meal) => (
             <ListItem key={meal._id}>
               <img
-                width="30%"
+                width="50%"
                 alt={meal.recipe.title}
                 src={meal.recipe.imageUrl}
               />

@@ -41,6 +41,7 @@ const InsightsPage = () => {
   if (mealInsight.length !== 0) {
     mealData = {
       labels: mealInsight.map((data) => data._id),
+
       datasets: [
         {
           label: "Meals prepped",

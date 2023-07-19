@@ -27,7 +27,7 @@ const Calendar = () => {
           boxShadow: "0 0 8px 5px #00000015",
           transitionDuration: "0.3s",
           borderRadius: 18,
-          p: 3,
+          p: 5,
         }}
         orientation="portrait"
         openTo="day"

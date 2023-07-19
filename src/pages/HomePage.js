@@ -30,7 +30,7 @@ const HomePage = () => {
       >
         {recipeList &&
           recipeList.map((recipe) => (
-            <Grid item key={recipe._id} paddingBottom={3} pr={3} mr={5}>
+            <Grid item key={recipe._id} paddingBottom={3}>
               <RecipeCard isHome={true} key={recipe._id} recipe={recipe} />
             </Grid>
           ))}

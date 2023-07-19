@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { useEffect } from "react";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createNewPlan } from "../store/slices/plannerSlice";
@@ -32,6 +32,7 @@ const RecipeCard = ({ isHome, recipe }) => {
         flexDirection: "column",
         alignItems: "left",
         backgroundColor: "#FFFFFFBF",
+        margin: 2,
         "&:hover": {
           transform: "translateY(-5px)",
           boxShadow: "0 0 8px 5px #00000015",

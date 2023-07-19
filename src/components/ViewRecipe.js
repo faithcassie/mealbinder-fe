@@ -50,8 +50,8 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
             width: "100%",
             backgroundColor: "#FFFFFFBF",
             py: 3,
-            px: 5,
-            mt: 2,
+            // px: 5,
+            // mt: 2,
           }}
         >
           <List>

@@ -79,6 +79,9 @@ export const createNewPlan =
       toast.success("Recipe added to planner successfully.");
     } catch (error) {
       dispatch(plannerSlice.actions.hasError(error.message));
+      if (error.message === "Recipe exists") {
+        toast.info("Recipe already existed.");
+      }
       // toast.error(error.message);
     }
   };
