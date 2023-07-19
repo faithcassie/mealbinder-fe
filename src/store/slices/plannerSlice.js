@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import apiService from "../../api/apiService";
 
 export const plannerSlice = createSlice({
@@ -21,6 +22,7 @@ export const plannerSlice = createSlice({
       if (state.error === "Get planner not found") {
         state.mealListByDate = [];
       }
+      console.log(action.payload);
     },
     selectingDate(state, action) {
       state.isLoading = false;
@@ -29,8 +31,9 @@ export const plannerSlice = createSlice({
     createNewPlanSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      const newPlanner = action.payload;
-      state.mealListByDate = newPlanner.mealList;
+      const { planner, mealCount } = action.payload;
+      state.mealListByDate = planner.mealList;
+      state.totalMealPrep = mealCount;
     },
     getPlannerByDateSuccess(state, action) {
       state.isLoading = false;
@@ -42,8 +45,9 @@ export const plannerSlice = createSlice({
     updateMealListSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      const updatePlanner = action.payload;
-      state.mealListByDate = updatePlanner.mealList;
+      const { planner, mealCount } = action.payload;
+      state.mealListByDate = planner.mealList;
+      state.totalMealPrep = mealCount;
     },
   },
   extraReducers: {},
@@ -55,14 +59,27 @@ export const createNewPlan =
   ({ mealList, date }) =>
   async (dispatch) => {
     dispatch(plannerSlice.actions.startLoading);
+    const currentDate = new Date(); // Get the current date
+
+    if (new Date(date) < currentDate) {
+      dispatch(
+        plannerSlice.actions.hasError(
+          "Date cannot be older than the current date"
+        )
+      );
+      toast.info("Sorry, you cannot add a meal to a previous day.");
+      return;
+    }
     try {
       const response = await apiService.post("/planners", {
         mealList,
         date,
       });
       dispatch(plannerSlice.actions.createNewPlanSuccess(response.data));
+      toast.success("Recipe added to planner successfully.");
     } catch (error) {
       dispatch(plannerSlice.actions.hasError(error.message));
+      // toast.error(error.message);
     }
   };
 
@@ -86,6 +103,7 @@ export const updateMealList =
     try {
       const response = await apiService.put("/planners", { date, recipeId });
       dispatch(plannerSlice.actions.updateMealListSuccess(response.data));
+      toast.success("Update planner successfully.");
     } catch (error) {
       dispatch(plannerSlice.actions.hasError(error.message));
     }

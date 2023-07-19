@@ -1,5 +1,7 @@
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import {
+  Alert,
+  AlertTitle,
   Box,
   Container,
   Dialog,
@@ -20,6 +22,7 @@ import { getRecipes } from "../store/slices/recipeSlice";
 import RecipeCard from "./RecipeCard";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { getPlannerByDate, updateMealList } from "../store/slices/plannerSlice";
+import AlertMsg from "./AlertMsg";
 
 const DailyPlanner = ({ sx }) => {
   const [open, setOpen] = useState(false);
@@ -44,11 +47,11 @@ const DailyPlanner = ({ sx }) => {
     dispatch(
       getPlannerByDate({ date: selectDate.toISOString().split("T")[0] })
     );
-  }, [selectDate, dispatch]);
-  // console.log(mealListByDate);
+  }, [selectDate]);
+  // console.log(error);
   return (
     <Container component="div" sx={{ ...sx }}>
-      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+      <Stack direction="row" sx={{ justifyContent: "space-between", pb: 2 }}>
         <Box>
           <Typography variant="subtitle1">Daily planner</Typography>
           <Typography variant="h4">{formattedDate}</Typography>
@@ -67,8 +70,10 @@ const DailyPlanner = ({ sx }) => {
           />
         </IconButton>
       </Stack>
+
       <Dialog fullWidth maxWidth open={open} onClose={handleClose}>
         <Box sx={{ margin: 4, width: "fit-content" }}>
+          <AlertMsg />
           <Stack
             direction="row"
             sx={{

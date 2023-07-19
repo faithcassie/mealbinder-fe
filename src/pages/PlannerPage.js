@@ -1,5 +1,4 @@
-import { DateCalendar } from "@mui/x-date-pickers";
-import React from "react";
+import React, { useEffect } from "react";
 import Calendar from "../components/Calendar";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import DailyPlanner from "../components/DailyPlanner";
@@ -9,7 +8,7 @@ const PlannerPage = () => {
   const { totalMealPrep } = useSelector((state) => state.planner);
 
   return (
-    <Stack direction={{ xs: "column", md: "row" }}>
+    <Stack direction={{ xs: "column", md: "row" }} sx={{ pt: 3 }}>
       <Container
         sx={{
           width: { xs: "80%", md: "40%" },
@@ -27,6 +26,10 @@ const PlannerPage = () => {
             backgroundColor: "#FFFFFFBF",
             justifyContent: "center",
             mb: 5,
+            transform: "translateY(-5px)",
+            boxShadow: "0 0 8px 5px #00000015",
+            transitionDuration: "0.3s",
+            borderRadius: 18,
           }}
         >
           <Typography variant="h5" textAlign="center" p={2}>
@@ -55,7 +58,11 @@ const PlannerPage = () => {
             justifyContent: "center",
             minHeight: 500,
             height: "100%",
-            py: 5,
+            p: 5,
+            transform: "translateY(-5px)",
+            boxShadow: "0 0 8px 5px #00000015",
+            transitionDuration: "0.3s",
+            borderRadius: 18,
           }}
         >
           <DailyPlanner sx={{ mx: 2 }} />

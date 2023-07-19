@@ -68,6 +68,7 @@ body {
 .illust:hover {
   transform: rotate(5deg);
 }
+
 .image-input {
   height: 30px;
   width: 300px;
@@ -81,4 +82,10 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .illust {
+    width: 70px; 
+  }
 }

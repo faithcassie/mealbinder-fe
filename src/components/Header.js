@@ -8,12 +8,13 @@ const Header = () => {
   return (
     <Stack
       direction="row"
-      spacing="2"
+      spacing={2}
       sx={{
         width: "100%",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingTop: "20px",
+        paddingY: 3,
+        paddingX: 1,
       }}
     >
       <Menu />

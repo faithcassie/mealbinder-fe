@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { useEffect } from "react";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createNewPlan } from "../store/slices/plannerSlice";
@@ -27,7 +27,6 @@ const RecipeCard = ({ isHome, recipe }) => {
         width: "300px",
         minHeight: "300px",
         borderRadius: 8,
-        // border: "solid black 0.7px",
         boxShadow: "none",
         display: "flex",
         flexDirection: "column",
@@ -40,11 +39,6 @@ const RecipeCard = ({ isHome, recipe }) => {
         },
       }}
     >
-      {/* <CardActionArea
-        sx={{ "&:hover": { backgroundColor: "transparent" } }}
-        component={Link}
-        to={`recipes/${recipeId}`}
-      > */}
       <CardMedia
         component="img"
         height="230px"
@@ -52,13 +46,10 @@ const RecipeCard = ({ isHome, recipe }) => {
         alt={recipe.title}
         image={recipe.imageUrl}
       />
-      {/* </CardActionArea> */}
       <CardContent
         sx={{
-          // height: "fit-content",
           padding: 0,
           ml: 4,
-          // mb: 3,
           display: "flex",
           flexDirection: "column",
           alignItems: "left",
@@ -72,7 +63,8 @@ const RecipeCard = ({ isHome, recipe }) => {
           <IconButton
             onClick={() => {
               if (isHome) {
-                console.log(isHome);
+                // console.log(isHome);
+
                 return;
               } else {
                 dispatch(

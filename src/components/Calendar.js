@@ -23,6 +23,11 @@ const Calendar = () => {
           justifyContent: "center",
           height: "100%",
           width: "100%",
+          transform: "translateY(-5px)",
+          boxShadow: "0 0 8px 5px #00000015",
+          transitionDuration: "0.3s",
+          borderRadius: 18,
+          p: 3,
         }}
         orientation="portrait"
         openTo="day"
