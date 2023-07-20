@@ -1,5 +1,9 @@
 # MealBinder MERN stack
 
+## Demostration
+
+https://remarkable-kashata-ee97b9.netlify.app/
+
 ## User Stories
 
 ### Background
@@ -37,14 +41,14 @@ Users can easily join by signing up with their email address. Once registered, t
 
 ### Ingredients
 
-- A a user, I can select ingredients by autocomplete feature.
-- A a user, I can add new ingredients.
-- A a user, I can remove ingredients from recipe.
+- As a user, I can select ingredients by autocomplete feature.
+- As a user, I can add new ingredients.
+- As a user, I can remove ingredients from recipe.
 
 ### Tags
 
-- A a user, I can select tags by autocomplete feature.
-- A a user, I can add new tags.
+- As a user, I can select tags by autocomplete feature.
+- As a user, I can add new tags.
 
 ### Planners
 
