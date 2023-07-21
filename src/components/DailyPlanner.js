@@ -23,9 +23,12 @@ import RecipeCard from "./RecipeCard";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { getPlannerByDate, updateMealList } from "../store/slices/plannerSlice";
 import AlertMsg from "./AlertMsg";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 const DailyPlanner = ({ sx }) => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
   const { recipeList, totalPage } = useSelector((state) => state.recipe);
   const { mealListByDate } = useSelector((state) => state.planner);
   const [page, setPage] = React.useState(1);
@@ -145,11 +148,23 @@ const DailyPlanner = ({ sx }) => {
           mealListByDate.map((meal) => (
             <ListItem key={meal._id}>
               <img
-                width="50%"
+                width="200px"
+                height="150px"
+                overflow="hidden"
                 alt={meal.recipe.title}
                 src={meal.recipe.imageUrl}
               />
-              <Typography paddingLeft={3} variant="body">
+              <Typography
+                paddingLeft={3}
+                variant="body"
+                to={`/recipes/${meal.recipe._id}`}
+                component={RouterLink}
+                sx={{
+                  textDecoration: "none",
+                  color: "#AB6614",
+                  fontWeight: 600,
+                }}
+              >
                 {meal.recipe.title}
               </Typography>
               <RemoveCircleOutlineIcon

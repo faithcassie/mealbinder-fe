@@ -82,8 +82,8 @@ const CreateRecipe = () => {
   };
 
   return (
-    <Stack direction="row" spacing={2} mt={2}>
-      <Container sx={{ minHeight: "90vh", width: "40%" }}>
+    <Stack direction={{ xs: "column", md: "row" }} spacing={2} mt={2}>
+      <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "40%" } }}>
         <Typography variant="h5" textAlign="center" pb={5}>
           Create new recipe
         </Typography>
@@ -197,7 +197,7 @@ const CreateRecipe = () => {
         </Box>
         <TagField />
       </Container>
-      <Container sx={{ minHeight: "90vh", width: "60%" }}>
+      <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "60%" } }}>
         <Stack
           direction="row"
           spacing={5}

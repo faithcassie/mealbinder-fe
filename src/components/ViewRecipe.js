@@ -32,8 +32,8 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
   }, []);
 
   return (
-    <Stack direction="row" spacing={2} paddingTop={5}>
-      <Container sx={{ minHeight: "90vh", width: "40%" }}>
+    <Stack direction={{ xs: "column", md: "row" }} spacing={2} paddingTop={5}>
+      <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "40%" } }}>
         <Typography variant="h4" textAlign="center" pt={5}>
           {recipeData.title}
         </Typography>
@@ -50,7 +50,7 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
             width: "100%",
             backgroundColor: "#FFFFFFBF",
             py: 3,
-            // px: 5,
+            px: 5,
             // mt: 2,
           }}
         >
@@ -91,19 +91,24 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
           ))}
         </Stack>
       </Container>
-      <Container sx={{ minHeight: "90vh", width: "60%" }}>
+      <Container
+        sx={{
+          minHeight: "90vh",
+          width: { xs: "100%", md: "60%" },
+        }}
+      >
         <Stack
           direction="row"
           spacing={5}
           sx={{
-            justifyContent: "left",
+            justifyContent: "center",
             pt: 3,
           }}
         >
           <img height="200" alt={recipeData.title} src={recipeData.imageUrl} />
           <Box
             sx={{
-              // width: "40%",
+              width: "40%",
               display: "flex",
               flexDirection: "column",
               alignSelf: "center",

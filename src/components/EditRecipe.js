@@ -100,8 +100,8 @@ const EditRecipe = ({ recipeData }) => {
     setTitle(event.target.value);
   };
   return (
-    <Stack direction="row" spacing={2}>
-      <Container sx={{ minHeight: "90vh", width: "50%" }}>
+    <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+      <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "40%" } }}>
         <Typography variant="h5" textAlign="center" pb={5}>
           Edit your recipe
         </Typography>
@@ -161,34 +161,6 @@ const EditRecipe = ({ recipeData }) => {
             </FormHelperText>
           </FormControl>
           <AutocompleteField />
-          {/* <FormControl
-            sx={{
-              mr: 1,
-              display: "flex",
-              alignItems: "center",
-            }}
-            variant="outlined"
-          >
-            <OutlinedInput
-              sx={{
-                height: { xs: "35px", md: "50px" },
-                backgroundColor: "#ffffffc8",
-                // borderRadius: 15,
-                width: "300px",
-              }}
-              id="outlined-adornment-weight"
-              aria-describedby="outlined-weight-helper-text"
-              inputProps={{
-                "aria-label": "weight",
-              }}
-            />
-            <FormHelperText
-              sx={{ color: "black" }}
-              id="outlined-weight-helper-text"
-            >
-              Ingredients
-            </FormHelperText>
-          </FormControl> */}
           <IconButton
             onClick={() => combineIngredients()}
             sx={{
@@ -240,7 +212,7 @@ const EditRecipe = ({ recipeData }) => {
         {/* tag list */}
         <TagField presetValues={recipeData.tagList.map((item) => item.tag)} />
       </Container>
-      <Container sx={{ minHeight: "90vh", width: "50%" }}>
+      <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "60%" } }}>
         <Stack
           direction="row"
           spacing={5}

@@ -28,6 +28,9 @@ const Calendar = () => {
           transitionDuration: "0.3s",
           borderRadius: 18,
           p: 5,
+          "& .css-14b29qc": {
+            display: "none",
+          },
         }}
         orientation="portrait"
         openTo="day"

@@ -8,11 +8,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import { createNewPlan } from "../store/slices/plannerSlice";
 
 const RecipeCard = ({ isHome, recipe }) => {
@@ -39,6 +38,8 @@ const RecipeCard = ({ isHome, recipe }) => {
           transitionDuration: "0.3s",
         },
       }}
+      to={`/recipes/${recipeId}`}
+      component={RouterLink}
     >
       <CardMedia
         component="img"
@@ -58,9 +59,9 @@ const RecipeCard = ({ isHome, recipe }) => {
       >
         <Typography variant="subtitle1">{recipe.title}</Typography>
         <Stack direction="row" alignItems="center">
-          <Link className="link" to={`recipes/${recipeId}`}>
+          <RouterLink className="link" to={`recipes/${recipeId}`}>
             Details
-          </Link>
+          </RouterLink>
           <IconButton
             onClick={() => {
               if (isHome) {
