@@ -16,7 +16,7 @@ const HomePage = () => {
     console.log(page);
     dispatch(getRecipes({ page }));
   }, [page]);
-  // console.log(tagList);
+
   return (
     <Container sx={{ mt: 5 }}>
       <SearchBar />

@@ -80,7 +80,9 @@ const Menu = () => {
           <ListItem sx={{ my: 0, py: 0 }}>
             <ListItemButton>
               <HomeIcon sx={{ pr: "10px" }} />
-              <Link className="link">Dashboard</Link>
+              <Link to="/" className="link">
+                Dashboard
+              </Link>
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ my: 0, py: 0 }}>
@@ -92,15 +94,17 @@ const Menu = () => {
           <ListItem sx={{ my: 0, py: 0 }}>
             <ListItemButton>
               <InfoIcon sx={{ pr: "10px" }} />
-              <Link className="link">FAQs</Link>
+              <Link to="/aboutus" className="link">
+                About us
+              </Link>
             </ListItemButton>
           </ListItem>
-          <ListItem sx={{ my: 0, py: 0 }}>
+          {/* <ListItem sx={{ my: 0, py: 0 }}>
             <ListItemButton>
               <SettingsIcon sx={{ pr: "10px" }} />
               <Link className="link">Settings</Link>
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
           <ListItem sx={{ my: 0, py: 0 }}>
             <ListItemButton>
               <EmailIcon sx={{ pr: "10px" }} />
@@ -110,7 +114,7 @@ const Menu = () => {
         </List>
         <Button
           onClick={() => navigate("/login", { replace: true })}
-          sx={{ pt: "100px" }}
+          sx={{ mt: "100px", ":hover": { backgroundColor: "transparent" } }}
           startIcon={<ExitToAppIcon />}
         >
           Sign out

@@ -12,6 +12,7 @@ import InsightsPage from "../pages/InsightsPage";
 import PlannerPage from "../pages/PlannerPage";
 import CreateRecipe from "../components/CreateRecipe";
 import EditRecipe from "../components/EditRecipe";
+import AboutUsPage from "../pages/AboutUsPage";
 
 const Router = () => {
   return (
@@ -31,6 +32,7 @@ const Router = () => {
         <Route path="recipes/create" element={<CreateRecipe />} />
         <Route path="insights" element={<InsightsPage />} />
         <Route path="planner" element={<PlannerPage />} />
+        <Route path="aboutus" element={<AboutUsPage />} />
       </Route>
       <Route element={<BlankLayout />}>
         <Route path="/register" element={<RegistrationPage />} />

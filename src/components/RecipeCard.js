@@ -38,8 +38,6 @@ const RecipeCard = ({ isHome, recipe }) => {
           transitionDuration: "0.3s",
         },
       }}
-      to={`/recipes/${recipeId}`}
-      component={RouterLink}
     >
       <CardMedia
         component="img"
@@ -65,8 +63,6 @@ const RecipeCard = ({ isHome, recipe }) => {
           <IconButton
             onClick={() => {
               if (isHome) {
-                // console.log(isHome);
-
                 return;
               } else {
                 dispatch(
