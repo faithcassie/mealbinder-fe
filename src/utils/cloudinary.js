@@ -9,7 +9,7 @@ import { updateRecipeImage } from "../store/slices/recipeSlice";
 export const ImageUpload = () => {
   const dispatch = useDispatch();
   const { recipeImage } = useSelector((state) => state.recipe);
-  //   const [image, setImage] = React.useState("");
+
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     const formData = new FormData();

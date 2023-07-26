@@ -44,12 +44,14 @@ const reducer = (state, action) => {
         user: null,
       };
     case UPDATE_PROFILE:
-      const { name } = action.payload;
+      const { name, avatarUrl, country } = action.payload;
       return {
         ...state,
         user: {
           ...state.user,
           name,
+          avatarUrl,
+          country,
         },
       };
     default:

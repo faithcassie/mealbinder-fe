@@ -18,7 +18,6 @@ import InsightsIcon from "@mui/icons-material/Insights";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InfoIcon from "@mui/icons-material/Info";
-import SettingsIcon from "@mui/icons-material/Settings";
 import EmailIcon from "@mui/icons-material/Email";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Insights from "../pages/InsightsPage";
@@ -88,7 +87,9 @@ const Menu = () => {
           <ListItem sx={{ my: 0, py: 0 }}>
             <ListItemButton>
               <AccountCircleIcon sx={{ pr: "10px" }} />
-              <Link className="link">Account</Link>
+              <Link to="/myaccount" className="link">
+                Account
+              </Link>
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ my: 0, py: 0 }}>
@@ -99,12 +100,7 @@ const Menu = () => {
               </Link>
             </ListItemButton>
           </ListItem>
-          {/* <ListItem sx={{ my: 0, py: 0 }}>
-            <ListItemButton>
-              <SettingsIcon sx={{ pr: "10px" }} />
-              <Link className="link">Settings</Link>
-            </ListItemButton>
-          </ListItem> */}
+
           <ListItem sx={{ my: 0, py: 0 }}>
             <ListItemButton>
               <EmailIcon sx={{ pr: "10px" }} />
@@ -114,7 +110,7 @@ const Menu = () => {
         </List>
         <Button
           onClick={() => navigate("/login", { replace: true })}
-          sx={{ mt: "100px", ":hover": { backgroundColor: "transparent" } }}
+          sx={{ mt: "100px" }}
           startIcon={<ExitToAppIcon />}
         >
           Sign out

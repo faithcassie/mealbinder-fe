@@ -13,6 +13,7 @@ import PlannerPage from "../pages/PlannerPage";
 import CreateRecipe from "../components/CreateRecipe";
 import EditRecipe from "../components/EditRecipe";
 import AboutUsPage from "../pages/AboutUsPage";
+import UserAccPage from "../pages/UserAccPage";
 
 const Router = () => {
   return (
@@ -33,6 +34,7 @@ const Router = () => {
         <Route path="insights" element={<InsightsPage />} />
         <Route path="planner" element={<PlannerPage />} />
         <Route path="aboutus" element={<AboutUsPage />} />
+        <Route path="myaccount" element={<UserAccPage />} />
       </Route>
       <Route element={<BlankLayout />}>
         <Route path="/register" element={<RegistrationPage />} />

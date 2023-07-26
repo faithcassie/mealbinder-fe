@@ -27,7 +27,7 @@ import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 const DailyPlanner = ({ sx }) => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { recipeList, totalPage } = useSelector((state) => state.recipe);
   const { mealListByDate } = useSelector((state) => state.planner);
@@ -51,7 +51,7 @@ const DailyPlanner = ({ sx }) => {
       getPlannerByDate({ date: selectDate.toISOString().split("T")[0] })
     );
   }, [selectDate]);
-  // console.log(error);
+
   return (
     <Container component="div">
       <Stack direction="row" sx={{ justifyContent: "space-between", pb: 2 }}>
@@ -77,8 +77,9 @@ const DailyPlanner = ({ sx }) => {
       <Dialog fullWidth maxWidth open={open} onClose={handleClose}>
         <Box
           sx={{
-            margin: 2,
+            margin: 5,
             width: "auto",
+            // backgroundColor: "green",
           }}
         >
           <AlertMsg />
@@ -115,12 +116,7 @@ const DailyPlanner = ({ sx }) => {
           >
             {recipeList &&
               recipeList.map((recipe) => (
-                <Grid
-                  item
-                  key={recipe._id}
-                  paddingBottom={3}
-                  // pr={3}
-                >
+                <Grid item key={recipe._id} paddingBottom={3}>
                   <RecipeCard isHome={false} key={recipe._id} recipe={recipe} />
                 </Grid>
               ))}
@@ -140,7 +136,7 @@ const DailyPlanner = ({ sx }) => {
         </Box>
       </Dialog>
 
-      <List sx={{ overflow: "auto", height: "auto" }}>
+      <List sx={{ overflow: "scroll", height: "500px" }}>
         {mealListByDate.length === 0 && (
           <Typography variant="subtitle1">Let's create a meal list!</Typography>
         )}

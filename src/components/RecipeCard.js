@@ -13,6 +13,7 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { Link as RouterLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewPlan } from "../store/slices/plannerSlice";
+import { replace } from "lodash";
 
 const RecipeCard = ({ isHome, recipe }) => {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ const RecipeCard = ({ isHome, recipe }) => {
       >
         <Typography variant="subtitle1">{recipe.title}</Typography>
         <Stack direction="row" alignItems="center">
-          <RouterLink className="link" to={`recipes/${recipeId}`}>
+          <RouterLink className="link" to={`/recipes/${recipeId}`}>
             Details
           </RouterLink>
           <IconButton
