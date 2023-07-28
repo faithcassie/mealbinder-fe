@@ -27,7 +27,7 @@ const Filter = ({ sx }) => {
     dispatch(getRecipes({ tag: searchTagId }));
     setSearchTag(searchTerm);
   };
-  // console.log(tagList);
+
   return (
     <Stack
       direction="row"

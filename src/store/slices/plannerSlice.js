@@ -22,7 +22,6 @@ export const plannerSlice = createSlice({
       if (state.error === "Get planner not found") {
         state.mealListByDate = [];
       }
-      console.log(action.payload);
     },
     selectingDate(state, action) {
       state.isLoading = false;

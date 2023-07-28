@@ -51,11 +51,10 @@ export const addIngredient =
     dispatch(ingredientSlice.actions.startLoading());
     try {
       let ingredientName = ingredient;
-      console.log(ingredient);
+
       const response = await apiService.post("/ingredients", {
         ingredientName,
       });
-      console.log(response);
       dispatch(ingredientSlice.actions.addIngredientSuccess(response.data));
     } catch (error) {
       dispatch(ingredientSlice.actions.hasError(error.message));
@@ -68,10 +67,8 @@ export const getAllIngredients = (searchTerm) => async (dispatch) => {
   try {
     let params = {};
     if (searchTerm) params.ingredientName = searchTerm;
-    console.log(params);
     const response = await apiService.get("/ingredients", { params });
     dispatch(ingredientSlice.actions.getAllIngredientsSuccess(response.data));
-    console.log(response);
   } catch (error) {
     dispatch(ingredientSlice.actions.hasError(error));
   }

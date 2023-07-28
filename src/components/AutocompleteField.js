@@ -35,8 +35,6 @@ const AutocompleteField = () => {
   const debouncedSearch = debounce(handleSearch, 300, { trailing: true });
 
   const handleAutocompleteChange = (e, newValue) => {
-    console.log(newValue);
-
     // maybe add ingredient to database
 
     if (newValue && newValue.ingredientName.includes("Add")) {
@@ -60,7 +58,6 @@ const AutocompleteField = () => {
       options={options}
       getOptionLabel={(option) => (option ? option.ingredientName : "")}
       renderInput={(params) => {
-        // console.log(params);
         return (
           <TextField
             sx={{ backgroundColor: "#ffffffc8" }}

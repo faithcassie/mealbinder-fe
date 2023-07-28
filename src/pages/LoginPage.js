@@ -11,6 +11,7 @@ import useAuth from "../contexts/useAuth";
 import { useNavigate } from "react-router-dom";
 import { FormProvider } from "../components/form/FormProvider";
 import { FTextField } from "../components/form/FTextField";
+import googleImg from "../assets/google.png";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -52,6 +53,24 @@ const LoginPage = () => {
       setError("responseError", error);
     }
   };
+  const googleAuth = () => {
+    const response = window.open(
+      `${process.env.REACT_APP_BACKEND_API}/auth/google`,
+      "_self"
+    );
+  };
+
+  const logOut = async () => {
+    console.log(`${process.env.REACT_APP_BACKEND_API}/auth/logout`);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_API}/auth/logout`,
+      {
+        credentials: "include",
+        mode: "no-cors",
+      }
+    );
+    navigate("/login");
+  };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -63,7 +82,7 @@ const LoginPage = () => {
           backgroundColor: "background.paper",
           border: 0.8,
           py: 6,
-          mt: 10,
+          my: 10,
         }}
       >
         <Typography variant="h6" align="center">
@@ -118,6 +137,12 @@ const LoginPage = () => {
               Log In
             </LoadingButton>
           </Stack>
+          <p>or</p>
+          <button className="google_btn" onClick={googleAuth}>
+            <img src={googleImg} alt="google icon" />
+            <span>Sign in with Google</span>
+          </button>
+          <button onClick={logOut}>Log out</button>
         </Stack>
       </Box>
     </FormProvider>

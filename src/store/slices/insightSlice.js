@@ -27,7 +27,6 @@ export const insightSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.mealInsight = action.payload;
-      console.log(action.payload);
     },
   },
   extraReducers: {},

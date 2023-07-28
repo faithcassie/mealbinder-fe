@@ -5,12 +5,15 @@ import LoadingScreen from "../components/LoadingScreen";
 function AuthRequire({ children }) {
   const { isInitialized, isAuthenticated } = useAuth();
   const location = useLocation();
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("accessToken");
 
   if (!isInitialized) {
     return <LoadingScreen />;
   }
-  console.log(isAuthenticated);
-  if (!isAuthenticated) {
+  if (window.location.pathname === "/" && token) {
+    return children;
+  } else if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 

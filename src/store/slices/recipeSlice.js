@@ -81,7 +81,6 @@ export const getRecipes =
       const params = { page, limit, tag, name };
       const response = await apiService.get(`/recipes`, { params });
       dispatch(recipeSlice.actions.getRecipesSuccess(response.data));
-      // console.log(response.data);
     } catch (error) {
       dispatch(recipeSlice.actions.hasError(error.message));
     }
@@ -92,7 +91,6 @@ export const getRecipeDetails = (recipeId) => async (dispatch) => {
   try {
     const response = await apiService.get(`/recipes/${recipeId}`);
     dispatch(recipeSlice.actions.getRecipeDetailsSuccess(response.data));
-    // console.log(response.data);
   } catch (error) {
     dispatch(recipeSlice.actions.hasError(error.message));
   }

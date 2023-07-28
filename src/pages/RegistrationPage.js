@@ -5,9 +5,11 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import useAuth from "../contexts/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FormProvider } from "../components/form/FormProvider";
 import { FTextField } from "../components/form/FTextField";
+import googleImg from "../assets/google.png";
+import LoginPage from "./LoginPage";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -50,17 +52,25 @@ const RegistrationPage = () => {
       // console.log(error);
     }
   };
+  const googleAuth = () => {
+    window.open(
+      `${process.env.REACT_APP_BACKEND_API}/auth/google/callback`,
+      "_self"
+    );
+  };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Box
         sx={{
           width: { lg: 500, xs: 300 },
-          height: 500,
+          height: "auto",
           borderRadius: "45px",
           backgroundColor: "background.paper",
           border: 0.8,
-          pt: 6,
+          pb: 3,
+          pt: 5,
+          my: 10,
         }}
       >
         <Typography variant="h6" align="center">
@@ -87,20 +97,24 @@ const RegistrationPage = () => {
             label="Password*"
             type="password"
             variant="standard"
-            sx={{ width: { lg: "60%", xs: "70%" }, py: 2 }}
+            sx={{ width: { lg: "60%", xs: "70%" }, py: 2, mb: 2 }}
           />
+          <Link to="/login" className="link" component={<LoginPage />}>
+            Already member?
+          </Link>
           <Typography
             variant="subtittle2"
             fontSize="12px"
             fontWeight="bold"
-            pt={3}
+            pt={5}
             width={{ lg: "60%", xs: "70%" }}
             textAlign="right"
             color="primary.orange"
           >
             By submitting, you agree to our Term and Privacy Policy.
           </Typography>
-          <Stack spacing={3} direction="row" paddingTop="50px">
+
+          <Stack spacing={3} direction="row" paddingTop={2}>
             <Button variant="text" onClick={() => reset()}>
               Cancel
             </Button>
@@ -113,6 +127,11 @@ const RegistrationPage = () => {
               Register
             </LoadingButton>
           </Stack>
+          <p>or</p>
+          <button className="google_btn" onClick={googleAuth}>
+            <img src={googleImg} alt="google icon" />
+            <span>Sign up with Google</span>
+          </button>
         </Stack>
       </Box>
     </FormProvider>

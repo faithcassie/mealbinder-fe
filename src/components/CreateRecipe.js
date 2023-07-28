@@ -77,7 +77,7 @@ const CreateRecipe = () => {
       })
     );
     dispatch(updateRecipeImage(""));
-    // console.log(newRecipe.id);
+
     navigate("/");
   };
 

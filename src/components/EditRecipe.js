@@ -30,7 +30,6 @@ import { ImageUpload } from "../utils/cloudinary";
 import TagField from "./TagField";
 
 const EditRecipe = ({ recipeData }) => {
-  console.log(recipeData);
   const dispatch = useDispatch();
   const [title, setTitle] = React.useState(recipeData.title);
   const [measurement, setMeasurement] = useState("");
@@ -81,7 +80,7 @@ const EditRecipe = ({ recipeData }) => {
     const tagIds = selectedTags
       .filter((tag) => tag !== null && tag._id !== undefined)
       .map((tag) => ({ tag: tag._id }));
-    console.log("submit recipe???");
+
     dispatch(
       updateRecipe({
         recipeId: recipeData._id,

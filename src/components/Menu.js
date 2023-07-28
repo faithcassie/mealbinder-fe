@@ -23,12 +23,27 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Insights from "../pages/InsightsPage";
 import Recipe from "../pages/HomePage";
 import Planner from "../pages/PlannerPage";
+import useAuth from "../contexts/useAuth";
 
 const Menu = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const auth = useAuth();
+
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+  const handleLogOut = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_API}/auth/logout`,
+      {
+        credentials: "include",
+        mode: "no-cors",
+      }
+    );
+    await auth.logout(() => {
+      navigate("/login", { replace: true });
+    });
   };
   return (
     <Box sx={{ textAlign: "left", width: "150px" }}>
@@ -104,12 +119,15 @@ const Menu = () => {
           <ListItem sx={{ my: 0, py: 0 }}>
             <ListItemButton>
               <EmailIcon sx={{ pr: "10px" }} />
-              <Link className="link">Contact us</Link>
+              <Link to="/contactus" className="link">
+                Contact us
+              </Link>
             </ListItemButton>
           </ListItem>
         </List>
+
         <Button
-          onClick={() => navigate("/login", { replace: true })}
+          onClick={handleLogOut}
           sx={{ mt: "100px" }}
           startIcon={<ExitToAppIcon />}
         >

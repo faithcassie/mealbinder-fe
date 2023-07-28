@@ -25,12 +25,16 @@ export const userSlice = createSlice({
     getCurrentUserSuccess: (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.userProfile = action.payload;
+      const currentUser = action.payload;
+      state.userProfile = currentUser;
+      state.avatarUrl = currentUser.avatarUrl;
     },
     updateCurrentUserSuccess: (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.updatedProfile = action.payload;
+      const currentUser = action.payload;
+      state.updatedProfile = currentUser;
+      state.avatarUrl = currentUser.avatarUrl;
     },
   },
   extraReducers: {},

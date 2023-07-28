@@ -19,7 +19,18 @@ const MainLayout = () => {
           mt: 10,
         }}
       >
-        <Typography color="black" textAlign="center" variant="subtitle2">
+        <Typography
+          color="black"
+          variant="subtitle2"
+          sx={{
+            position: "relative",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            margin: "auto",
+          }}
+        >
           All rights reserved. 2023
         </Typography>
       </Box>

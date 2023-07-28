@@ -17,12 +17,12 @@ import { useNavigate } from "react-router-dom";
 const UserAccPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { avatarUrl, updatedProfile } = useSelector((state) => state.user);
+  const { avatarUrl } = useSelector((state) => state.user);
   const { user } = useContext(AuthContext);
   const [name, setName] = useState(user.name);
   const [country, setCountry] = useState(user.country);
   useEffect(() => {
-    getCurrentUser();
+    dispatch(getCurrentUser());
   }, []);
 
   const handleSubmit = () => {

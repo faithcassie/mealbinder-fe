@@ -13,7 +13,6 @@ const HomePage = () => {
   const [page, setPage] = React.useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(page);
     dispatch(getRecipes({ page }));
   }, [page]);
 

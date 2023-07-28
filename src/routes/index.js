@@ -14,6 +14,7 @@ import CreateRecipe from "../components/CreateRecipe";
 import EditRecipe from "../components/EditRecipe";
 import AboutUsPage from "../pages/AboutUsPage";
 import UserAccPage from "../pages/UserAccPage";
+import ContactPage from "../pages/ContactPage";
 
 const Router = () => {
   return (
@@ -35,6 +36,7 @@ const Router = () => {
         <Route path="planner" element={<PlannerPage />} />
         <Route path="aboutus" element={<AboutUsPage />} />
         <Route path="myaccount" element={<UserAccPage />} />
+        <Route path="contactus" element={<ContactPage />} />
       </Route>
       <Route element={<BlankLayout />}>
         <Route path="/register" element={<RegistrationPage />} />

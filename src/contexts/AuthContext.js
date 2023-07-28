@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import apiService from "../api/apiService";
 import { isValidToken } from "../utils/jwt";
@@ -154,6 +154,43 @@ function AuthProvider({ children }) {
     setSession(null);
     dispatch({ type: LOGOUT });
     callback();
+  };
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("accessToken");
+  console.log(window.location);
+  let refresh = useRef(false);
+  refresh.current =
+    window.location.pathname === "/" && token
+      ? !refresh.current
+      : refresh.current;
+
+  console.log("testing", window.location.pathname === "/" && token);
+  console.log(refresh);
+  console.log(window.location.pathname);
+  console.log(token);
+  useEffect(() => {
+    // Check if a token exists in the URL (from Google authentication redirect)
+    console.log(token);
+    if (token) {
+      setSession(token);
+      getUser();
+    }
+  }, []);
+
+  const getUser = async () => {
+    const storedToken = window.localStorage.getItem("accessToken");
+    try {
+      const response = await apiService.get("/users/me");
+      const user = response.data;
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: { user },
+      });
+    } catch (error) {
+      // dispatch(userSlice.actions.hasError(error.message));
+    }
   };
 
   return (

@@ -22,7 +22,7 @@ export default function TagField({ presetValues = [] }) {
   const { tagList } = useSelector((state) => state.tag);
 
   const [value, setValue] = React.useState(presetValues);
-  console.log(value);
+
   React.useEffect(() => {
     dispatch(getAllTags());
   }, []);

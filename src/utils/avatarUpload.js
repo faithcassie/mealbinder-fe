@@ -36,29 +36,28 @@ export const AvatarUpload = () => {
         paddingTop: 5,
       }}
     >
-      {avatarUrl && (
-        <Box
-          sx={{
-            width: { xs: "250px", md: "300px" },
-            height: { xs: "250px", md: "300px" },
-            borderRadius: { xs: 40, md: 40 },
-            // backgroundColor: "#00000010",
-            backgroundImage: { avatarUrl },
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            mb: 3,
-            mx: { xs: "auto", md: 3 },
-            mt: 3,
-          }}
-        >
-          {avatarUrl && (
-            <CloudinaryContext cloudName={CLOUDINARY_CLOUD_NAME}>
-              <Image className="avatar-img" publicId={avatarUrl} crop="fill" />
-            </CloudinaryContext>
-          )}
-        </Box>
-      )}
+      <Box
+        sx={{
+          width: { xs: "250px", md: "300px" },
+          height: { xs: "250px", md: "300px" },
+          borderRadius: { xs: 40, md: 40 },
+          backgroundColor: "#00000010",
+          // backgroundImage: { avatarUrl },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          mb: 3,
+          mx: { xs: "auto", md: 3 },
+          mt: 3,
+        }}
+      >
+        {avatarUrl && (
+          <CloudinaryContext cloudName={CLOUDINARY_CLOUD_NAME}>
+            <Image className="avatar-img" publicId={avatarUrl} crop="fill" />
+          </CloudinaryContext>
+        )}
+      </Box>
+
       <input
         className="avatar-input"
         type="file"
