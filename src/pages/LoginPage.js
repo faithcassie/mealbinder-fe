@@ -96,6 +96,9 @@ const LoginPage = () => {
             label="Email*"
             variant="standard"
             sx={{ width: { lg: "60%", xs: "70%" }, py: 2 }}
+            inputProps={{
+              autoComplete: "email",
+            }}
           />
           <FTextField
             name="password"
@@ -103,6 +106,9 @@ const LoginPage = () => {
             type="password"
             variant="standard"
             sx={{ width: { lg: "60%", xs: "70%" }, py: 2 }}
+            inputProps={{
+              autoComplete: "current-password",
+            }}
           />
           <Stack
             spacing={1}
