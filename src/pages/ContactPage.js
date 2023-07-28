@@ -57,11 +57,10 @@ const ContactPage = () => {
       {!isSubmitted ? (
         <form onSubmit={handleSubmit}>
           <Box sx={{ padding: 5 }}>
-            <Typography variant="h4" marginY={5}>
+            <Typography variant="h3" marginY={5}>
               Contact us
             </Typography>
             <TextField
-              id="fname"
               name="fname"
               label="What's your name?"
               required
@@ -70,22 +69,21 @@ const ContactPage = () => {
 
             <TextField
               fullWidth
-              id="email"
+              //   id="email"
               name="email"
               type="email"
               label="Your email?"
               required
               sx={{ marginTop: 2, width: "100%" }}
             />
-            <br />
+
             <TextField
               multiline
               name="message"
-              id="message"
               rows={10}
-              placeholder="Leave us a message. :)"
+              label="Leave us a message. :) "
               required
-              variant="filled"
+              //   variant="filled"
               sx={{ marginTop: 2, width: "100%" }}
             />
             <br />
@@ -99,7 +97,7 @@ const ContactPage = () => {
           </Box>
         </form>
       ) : (
-        <Box sx={{ padding: 5 }}>
+        <Box sx={{ padding: 6, height: "500px" }}>
           <Typography variant="h4">Thank you for your message!</Typography>
           <p>We'll get back to you as soon as possible.</p>
         </Box>

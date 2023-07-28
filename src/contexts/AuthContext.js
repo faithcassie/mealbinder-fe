@@ -158,20 +158,16 @@ function AuthProvider({ children }) {
 
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get("accessToken");
-  console.log(window.location);
+
   let refresh = useRef(false);
   refresh.current =
     window.location.pathname === "/" && token
       ? !refresh.current
       : refresh.current;
 
-  console.log("testing", window.location.pathname === "/" && token);
-  console.log(refresh);
-  console.log(window.location.pathname);
-  console.log(token);
   useEffect(() => {
     // Check if a token exists in the URL (from Google authentication redirect)
-    console.log(token);
+
     if (token) {
       setSession(token);
       getUser();

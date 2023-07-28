@@ -61,7 +61,6 @@ const LoginPage = () => {
   };
 
   const logOut = async () => {
-    console.log(`${process.env.REACT_APP_BACKEND_API}/auth/logout`);
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_API}/auth/logout`,
       {

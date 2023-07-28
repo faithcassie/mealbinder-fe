@@ -19,7 +19,7 @@ import {
 const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { recipeTotal, totalPage, searchRecipeTitle } = useSelector(
+  const { recipeTotal, searchRecipeTitle } = useSelector(
     (state) => state.recipe
   );
   // const [, setSearchRecipeTitle] = useState("");
@@ -39,18 +39,18 @@ const SearchBar = () => {
       spacing={2}
       sx={{
         pt: "30px",
-        // backgroundColor: "limegreen",
         alignItems: "center",
       }}
     >
       <Paper
         component="form"
         sx={{
-          px: "20px",
+          // px: "20px",
           mb: "2rem",
           display: "flex",
+          flexDirection: "row",
           width: { xs: "70%", md: "50%" },
-          height: { xs: "35px", md: "50px" },
+          height: { xs: "40px", md: "50px" },
           borderRadius: 15,
           border: "0.5px solid black",
           boxShadow: "none",
@@ -61,10 +61,10 @@ const SearchBar = () => {
           value={searchRecipeTitle}
           onChange={handleSearchRecipe}
           placeholder="Search for recipes"
-          sx={{ ml: 1, flex: 1 }}
+          sx={{ pl: 3, flex: 1 }}
           inputProps={{ "aria-label": "search recipe" }}
         />
-        <IconButton type="button" aria-label="search">
+        <IconButton sx={{ pr: 3 }} type="button" aria-label="search">
           <SearchIcon />
         </IconButton>
       </Paper>

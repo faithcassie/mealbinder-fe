@@ -9,7 +9,7 @@ import {
   Stack,
   SwipeableDrawer,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
@@ -24,11 +24,18 @@ import Insights from "../pages/InsightsPage";
 import Recipe from "../pages/HomePage";
 import Planner from "../pages/PlannerPage";
 import useAuth from "../contexts/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUser } from "../store/slices/userSlice";
 
 const Menu = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const auth = useAuth();
+  const { avatarUrl } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [avatarUrl]);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -57,6 +64,7 @@ const Menu = () => {
         onOpen={toggleDrawer(true)}
       >
         <Avatar
+          src={avatarUrl}
           sx={{
             width: 100,
             height: 100,
