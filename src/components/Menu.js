@@ -6,7 +6,6 @@ import {
   List,
   ListItem,
   ListItemButton,
-  Stack,
   SwipeableDrawer,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -20,9 +19,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InfoIcon from "@mui/icons-material/Info";
 import EmailIcon from "@mui/icons-material/Email";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import Insights from "../pages/InsightsPage";
-import Recipe from "../pages/HomePage";
-import Planner from "../pages/PlannerPage";
 import useAuth from "../contexts/useAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser } from "../store/slices/userSlice";
@@ -35,7 +31,7 @@ const Menu = () => {
   const { avatarUrl } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, [avatarUrl]);
+  }, [avatarUrl, dispatch]);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -76,60 +72,60 @@ const Menu = () => {
 
         <List>
           <ListItem sx={{ display: { xs: "flex", md: "none" }, my: 0, py: 0 }}>
-            <ListItemButton>
+            <ListItemButton component={Link} to="/insights" className="link">
               <InsightsIcon sx={{ pr: "10px" }} />
-              <Link to="/insights" className="link" component={<Insights />}>
-                Insights
-              </Link>
+              {/* <Link to="/insights" className="link" component={<Insights />}> */}
+              Insights
+              {/* </Link> */}
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ display: { xs: "flex", md: "none" }, my: 0, py: 0 }}>
-            <ListItemButton>
+            <ListItemButton component={Link} to="/" className="link">
               <MenuBookIcon sx={{ pr: "10px" }} />
-              <Link to="/" className="link" component={<Recipe />}>
-                Recipes
-              </Link>
+              {/* <Link to="/" className="link" component={<Recipe />}> */}
+              Recipes
+              {/* </Link> */}
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ display: { xs: "flex", md: "none" }, my: 0, py: 0 }}>
-            <ListItemButton>
+            <ListItemButton component={Link} to="/planner" className="link">
               <CalendarTodayIcon sx={{ pr: "10px" }} />
-              <Link to="/planner" className="link" component={<Planner />}>
-                Planner
-              </Link>
+              {/* <Link to="/planner" className="link" component={<Planner />}> */}
+              Planner
+              {/* </Link> */}
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ my: 0, py: 0 }}>
-            <ListItemButton>
+            <ListItemButton component={Link} to="/" className="link">
               <HomeIcon sx={{ pr: "10px" }} />
-              <Link to="/" className="link">
-                Dashboard
-              </Link>
+              {/* <Link to="/" className="link"> */}
+              Dashboard
+              {/* </Link> */}
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ my: 0, py: 0 }}>
-            <ListItemButton>
+            <ListItemButton component={Link} to="/myaccount" className="link">
               <AccountCircleIcon sx={{ pr: "10px" }} />
-              <Link to="/myaccount" className="link">
-                Account
-              </Link>
+              {/* <Link to="/myaccount" className="link"> */}
+              Account
+              {/* </Link> */}
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ my: 0, py: 0 }}>
-            <ListItemButton>
+            <ListItemButton component={Link} to="/aboutus" className="link">
               <InfoIcon sx={{ pr: "10px" }} />
-              <Link to="/aboutus" className="link">
-                About us
-              </Link>
+              {/* <Link to="/aboutus" className="link"> */}
+              About us
+              {/* </Link> */}
             </ListItemButton>
           </ListItem>
 
           <ListItem sx={{ my: 0, py: 0 }}>
-            <ListItemButton>
+            <ListItemButton component={Link} to="/contactus" className="link">
               <EmailIcon sx={{ pr: "10px" }} />
-              <Link to="/contactus" className="link">
-                Contact us
-              </Link>
+              {/* <Link to="/contactus" className="link"> */}
+              Contact us
+              {/* </Link> */}
             </ListItemButton>
           </ListItem>
         </List>
