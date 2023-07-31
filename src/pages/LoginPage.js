@@ -60,16 +60,16 @@ const LoginPage = () => {
     );
   };
 
-  const logOut = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_API}/auth/logout`,
-      {
-        credentials: "include",
-        mode: "no-cors",
-      }
-    );
-    navigate("/login");
-  };
+  // const logOut = async () => {
+  //   const response = await fetch(
+  //     `${process.env.REACT_APP_BACKEND_API}/auth/logout`,
+  //     {
+  //       credentials: "include",
+  //       mode: "no-cors",
+  //     }
+  //   );
+  //   navigate("/login");
+  // };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -147,7 +147,6 @@ const LoginPage = () => {
             <img src={googleImg} alt="google icon" />
             <span>Sign in with Google</span>
           </button>
-          <button onClick={logOut}>Log out</button>
         </Stack>
       </Box>
     </FormProvider>
