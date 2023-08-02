@@ -60,26 +60,26 @@ const RegistrationPage = () => {
   };
 
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Box
-        sx={{
-          width: { lg: 500, xs: 300 },
-          height: "auto",
-          borderRadius: "45px",
-          backgroundColor: "background.paper",
-          border: 0.8,
-          pb: 3,
-          pt: 5,
-          my: 10,
-        }}
-      >
+    <Box
+      sx={{
+        width: { lg: 500, xs: 300 },
+        height: "auto",
+        borderRadius: "45px",
+        backgroundColor: "background.paper",
+        border: 0.8,
+        pb: 3,
+        pt: 5,
+        my: 10,
+      }}
+    >
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Typography variant="h6" align="center">
           Let's start your journey!
         </Typography>
         {!!errors.responseError && (
           <Alert severity="error">{errors.responseError.message}</Alert>
         )}
-        <Stack alignItems="center" paddingTop="20px">
+        <Stack sx={{ width: "100%" }} alignItems="center" paddingTop="20px">
           <FTextField
             name="name"
             label="Full name*"
@@ -128,13 +128,15 @@ const RegistrationPage = () => {
             </LoadingButton>
           </Stack>
           <p>or</p>
-          <button className="google_btn" onClick={googleAuth}>
-            <img src={googleImg} alt="google icon" />
-            <span>Sign up with Google</span>
-          </button>
         </Stack>
+      </FormProvider>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <button className="google_btn" onClick={googleAuth}>
+          <img src={googleImg} alt="google icon" />
+          <span>Sign up with Google</span>
+        </button>
       </Box>
-    </FormProvider>
+    </Box>
   );
 };
 
