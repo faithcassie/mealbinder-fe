@@ -178,6 +178,9 @@ const DailyPlanner = ({ sx }) => {
                   height: "16px",
                   color: "#AB6614",
                   ml: 2,
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
                 }}
               />
             </ListItem>

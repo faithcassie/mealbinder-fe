@@ -37,6 +37,7 @@ const EditRecipe = ({ recipeData }) => {
   const [ingredientList, setIngredientList] = useState(
     recipeData.ingredientList
   );
+  console.log(ingredientList);
   const { selectedIngredient } = useSelector((state) => state.ingredient);
   const { recipeImage } = useSelector((state) => state.recipe);
   const { selectedTags } = useSelector((state) => state.tag);
@@ -71,9 +72,9 @@ const EditRecipe = ({ recipeData }) => {
   };
 
   const deleteIngredient = (index) => {
-    const updateCombinedArr = [...combinedArr];
-    updateCombinedArr.splice(index, 1);
-    setCombinedArr(updateCombinedArr);
+    const postIngredientList = [...ingredientList];
+    postIngredientList.splice(index, 1);
+    setIngredientList(postIngredientList);
   };
 
   const handleSubmit = () => {
@@ -100,7 +101,12 @@ const EditRecipe = ({ recipeData }) => {
   };
   return (
     <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-      <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "40%" } }}>
+      <Container
+        sx={{
+          minHeight: { xs: "fit-content", md: "90vh" },
+          width: { xs: "100%", md: "40%" },
+        }}
+      >
         <Typography variant="h5" textAlign="center" pb={5}>
           Edit your recipe
         </Typography>
@@ -202,6 +208,9 @@ const EditRecipe = ({ recipeData }) => {
                     height: "16px",
                     color: "#AB6614",
                     ml: 2,
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
                   }}
                 />
               </ListItem>
@@ -223,9 +232,11 @@ const EditRecipe = ({ recipeData }) => {
           <ImageUpload />
           <Box
             sx={{
-              display: "flex",
+              display: { xs: "none", md: "flex" },
               flexDirection: "column",
               alignSelf: "center",
+              padding: 3,
+              mx: "auto",
             }}
           >
             <Button
@@ -272,6 +283,27 @@ const EditRecipe = ({ recipeData }) => {
             mt: 2,
           }}
         />
+        <Box
+          sx={{
+            width: "40%",
+            display: { xs: "flex", md: "none" },
+            flexDirection: "column",
+            alignSelf: "center",
+            padding: 3,
+            mx: "auto",
+          }}
+        >
+          <Button
+            onClick={handleSubmit}
+            variant="contained"
+            sx={{ backgroundColor: "#AB6614", boxShadow: "none" }}
+          >
+            Save
+          </Button>
+          <Button onClick={() => dispatch(editRecipe(false))} variant="text">
+            Cancel
+          </Button>
+        </Box>
       </Container>
     </Stack>
   );

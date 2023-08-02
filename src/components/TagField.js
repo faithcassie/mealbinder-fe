@@ -36,16 +36,12 @@ export default function TagField({ presetValues = [] }) {
       id="tags"
       options={tagList}
       getOptionLabel={(option) => {
-        // Valu selected with enter, right from the input
         if (typeof option === "string") {
           return option;
         }
-        // console.log(option);
-        // Add "xxx" option created dynamically
         if (option && option.inputValue) {
           return option.inputValue;
         }
-        // Regular option
         return option.tag;
       }}
       sx={{
@@ -64,7 +60,6 @@ export default function TagField({ presetValues = [] }) {
         }
         const lastTag = newValue[newValue.length - 1];
         if (lastTag.tag.includes("Add")) {
-          // Create a new value from the user input
           setValue(newValue);
           dispatch(addNewTag({ tag: lastTag.inputValue }));
         } else {
@@ -74,7 +69,6 @@ export default function TagField({ presetValues = [] }) {
       filterOptions={(options, params) => {
         const filtered = filter(options, params);
         const { inputValue } = params;
-        // Suggest the creation of a new value
         const isExisting = options.some((option) => inputValue === option.tag);
         if (inputValue !== "" && !isExisting) {
           filtered.push({

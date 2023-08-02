@@ -33,7 +33,12 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
 
   return (
     <Stack direction={{ xs: "column", md: "row" }} spacing={2} paddingTop={5}>
-      <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "40%" } }}>
+      <Container
+        sx={{
+          minHeight: { xs: "fit-content", md: "90vh" },
+          width: { xs: "100%", md: "40%" },
+        }}
+      >
         <Typography variant="h4" textAlign="center" pt={5}>
           {recipeData.title}
         </Typography>
@@ -98,20 +103,23 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
         }}
       >
         <Stack
-          direction="row"
           spacing={5}
           sx={{
             justifyContent: "center",
             pt: 3,
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
           }}
         >
           <img height="200" alt={recipeData.title} src={recipeData.imageUrl} />
           <Box
             sx={{
               width: "40%",
-              display: "flex",
+              display: { xs: "none", md: "flex" },
               flexDirection: "column",
               alignSelf: "center",
+              padding: 3,
+              mx: "auto",
             }}
           >
             <Button
@@ -146,6 +154,27 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
           {recipeData.instructions.split("\n").map((line, index) => (
             <p key={index}>{line}</p>
           ))}
+        </Box>
+        <Box
+          sx={{
+            width: "40%",
+            display: { xs: "flex", md: "none" },
+            flexDirection: "column",
+            alignSelf: "center",
+            padding: 3,
+            mx: "auto",
+          }}
+        >
+          <Button
+            onClick={handleClick}
+            variant="contained"
+            sx={{ backgroundColor: "#AB6614", boxShadow: "none" }}
+          >
+            Edit
+          </Button>
+          <Button onClick={() => navigate("/")} variant="text">
+            Back
+          </Button>
         </Box>
       </Container>
     </Stack>
