@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Calendar from "../components/Calendar";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import DailyPlanner from "../components/DailyPlanner";

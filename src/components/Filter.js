@@ -17,7 +17,7 @@ const Filter = ({ sx }) => {
   const [searchTag, setSearchTag] = useState("");
   useEffect(() => {
     dispatch(getAllTags());
-  }, [dispatch]);
+  }, []);
   const handleChange = (event) => {
     let searchTerm = event.target.value;
     let searchTagId = tagList.find((obj) => obj.tag === searchTerm);

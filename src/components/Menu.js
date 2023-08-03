@@ -31,7 +31,7 @@ const Menu = () => {
   const { avatarUrl } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, [avatarUrl, dispatch]);
+  }, [avatarUrl]);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);

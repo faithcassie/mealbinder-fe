@@ -31,7 +31,7 @@ const DailyPlanner = ({ sx }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipes({ page }));
-  }, [page, dispatch]);
+  }, [page]);
 
   const handleClose = () => {
     setOpen(false);
@@ -46,7 +46,7 @@ const DailyPlanner = ({ sx }) => {
     dispatch(
       getPlannerByDate({ date: selectDate.toISOString().split("T")[0] })
     );
-  }, [selectDate, dispatch]);
+  }, [selectDate]);
 
   return (
     <Container component="div">

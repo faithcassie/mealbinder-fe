@@ -4,11 +4,7 @@ import PieChart from "../components/PieChart";
 import BarChart from "../components/BarChart";
 import flourImg from "../assets/flour.png";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getMealData,
-  getTagData,
-  testAction,
-} from "../store/slices/insightSlice";
+import { getMealData, getTagData } from "../store/slices/insightSlice";
 
 const InsightsPage = () => {
   const { recipeInsight, mealInsight } = useSelector((state) => state.insight);

@@ -1,12 +1,4 @@
-import { Textarea } from "@mui/joy";
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-  TextareaAutosize,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 const ContactPage = () => {

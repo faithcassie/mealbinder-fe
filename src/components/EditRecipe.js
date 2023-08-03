@@ -33,7 +33,6 @@ const EditRecipe = ({ recipeData }) => {
   const [ingredientList, setIngredientList] = useState(
     recipeData.ingredientList
   );
-  console.log(ingredientList);
   const { selectedIngredient } = useSelector((state) => state.ingredient);
   const { recipeImage } = useSelector((state) => state.recipe);
   const { selectedTags } = useSelector((state) => state.tag);
