@@ -58,7 +58,7 @@ export const createNewPlan =
   ({ mealList, date }) =>
   async (dispatch) => {
     dispatch(plannerSlice.actions.startLoading);
-    const currentDate = new Date(); // Get the current date
+    const currentDate = new Date();
 
     if (new Date(date) < currentDate) {
       dispatch(
@@ -81,7 +81,6 @@ export const createNewPlan =
       if (error.message === "Recipe exists") {
         toast.info("Recipe already existed.");
       }
-      // toast.error(error.message);
     }
   };
 

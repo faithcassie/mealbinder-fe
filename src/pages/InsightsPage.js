@@ -24,7 +24,6 @@ const InsightsPage = () => {
       labels: recipeInsight.map((data) => data.name.tag),
       datasets: [
         {
-          // label: "Recipe total in each tag",
           data: recipeInsight.map((data) => data.count),
           backgroundColor: [
             "#5DC597",

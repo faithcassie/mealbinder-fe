@@ -1,6 +1,4 @@
-import { CheckBox } from "@mui/icons-material";
 import {
-  Box,
   FormControl,
   InputLabel,
   MenuItem,
@@ -16,15 +14,17 @@ import { getRecipes } from "../store/slices/recipeSlice";
 const Filter = ({ sx }) => {
   const dispatch = useDispatch();
   const { tagList } = useSelector((state) => state.tag);
-
   const [searchTag, setSearchTag] = useState("");
   useEffect(() => {
     dispatch(getAllTags());
-  }, []);
+  }, [dispatch]);
   const handleChange = (event) => {
-    const searchTerm = event.target.value.tag;
-    let searchTagId = event.target.value._id;
-    dispatch(getRecipes({ tag: searchTagId }));
+    let searchTerm = event.target.value;
+    let searchTagId = tagList.find((obj) => obj.tag === searchTerm);
+    if (!searchTagId) {
+      searchTagId = {};
+    }
+    dispatch(getRecipes({ tag: searchTagId._id }));
     setSearchTag(searchTerm);
   };
 
@@ -33,6 +33,8 @@ const Filter = ({ sx }) => {
       direction="row"
       sx={{
         alignItems: "center",
+        pl: 2,
+        pt: 3,
       }}
     >
       <Typography variant="subtitle1">Filter by: </Typography>
@@ -52,20 +54,18 @@ const Filter = ({ sx }) => {
           sx={{
             marginY: 1,
             height: "35px",
-            // width: "100px",
             backgroundColor: "#ffffffc8",
             borderRadius: "18px",
           }}
         >
-          <MenuItem value="">None</MenuItem>
+          <MenuItem value="None">None</MenuItem>
           {tagList.map((item) => {
             return (
-              <MenuItem key={item._id} value={item}>
+              <MenuItem key={item._id} value={item.tag}>
                 {item.tag}
               </MenuItem>
             );
           })}
-          {/* </Box> */}
         </Select>
       </FormControl>
     </Stack>

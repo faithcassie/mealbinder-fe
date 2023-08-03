@@ -35,8 +35,7 @@ export const ingredientSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       const newIngredient = action.payload;
-      state.ingredientArr.push(newIngredient); //obj?
-      // state.totalIngredients = count;
+      state.ingredientArr.push(newIngredient);
       state.selectedIngredient = newIngredient;
     },
   },
@@ -58,7 +57,6 @@ export const addIngredient =
       dispatch(ingredientSlice.actions.addIngredientSuccess(response.data));
     } catch (error) {
       dispatch(ingredientSlice.actions.hasError(error.message));
-      // toast.error(error.message);
     }
   };
 
@@ -73,11 +71,3 @@ export const getAllIngredients = (searchTerm) => async (dispatch) => {
     dispatch(ingredientSlice.actions.hasError(error));
   }
 };
-// export const updateIngredientArr = ({updatedIngredientArr}) => async (async) => {
-//   dispatch(ingredientSlice.actions.startLoading());
-//   try {
-
-//   } catch (error) {
-
-//   }
-// }

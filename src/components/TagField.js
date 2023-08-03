@@ -2,25 +2,17 @@ import * as React from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { getTagsbyRecipeId, updateTagList } from "../store/slices/recipeSlice";
 import {
   addNewTag,
   getAllTags,
   updateSelectedTags,
 } from "../store/slices/tagSlice";
-import { useParams } from "react-router-dom";
 
 const filter = createFilterOptions();
 
 export default function TagField({ presetValues = [] }) {
   const dispatch = useDispatch();
-  const params = useParams();
-  const recipeId = params.id;
-  // if (recipeId) {
-  //   dispatch(getTagsbyRecipeId({ recipeId }));
-  // }
   const { tagList } = useSelector((state) => state.tag);
-
   const [value, setValue] = React.useState(presetValues);
 
   React.useEffect(() => {

@@ -3,7 +3,7 @@ import {
   getRecipes,
   updateSearchRecipeTitle,
 } from "../store/slices/recipeSlice";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,7 +22,6 @@ const Search = () => {
       component="form"
       sx={{
         px: "20px",
-        // mb: "2rem",
         display: "flex",
         width: "100%",
         height: { xs: "35px", md: "40px" },

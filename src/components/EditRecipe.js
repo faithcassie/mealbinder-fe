@@ -5,12 +5,9 @@ import {
   FormControl,
   FormHelperText,
   IconButton,
-  InputAdornment,
-  InputBase,
   List,
   ListItem,
   OutlinedInput,
-  Paper,
   Stack,
   TextField,
   Typography,
@@ -18,7 +15,6 @@ import {
 import React, { useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import DropdownButton from "./DropdownButton";
 import {
   editRecipe,
   updateRecipe,
@@ -122,12 +118,10 @@ const EditRecipe = ({ recipeData }) => {
             onChange={handleTitleChange}
             value={title}
             placeholder={recipeData.title}
-            // sx={{ ml: 1, flex: 1 }}
             sx={{
               width: "100%",
               height: { xs: "35px", md: "50px" },
               backgroundColor: "#ffffffc8",
-              // borderRadius: 15,
             }}
             inputProps={{ "aria-label": "Recipe title" }}
           />
@@ -136,7 +130,6 @@ const EditRecipe = ({ recipeData }) => {
           <FormControl
             sx={{
               mr: 2,
-              //   pb: 3,
               width: "100px",
               display: "flex",
               alignItems: "center",
@@ -147,7 +140,6 @@ const EditRecipe = ({ recipeData }) => {
               sx={{
                 height: { xs: "35px", md: "50px" },
                 backgroundColor: "#ffffffc8",
-                // borderRadius: 15,
               }}
               id="outlined-adornment-weight"
               aria-describedby="outlined-weight-helper-text"
@@ -185,15 +177,13 @@ const EditRecipe = ({ recipeData }) => {
             height: "400px",
             overflow: "auto",
             "&::-webkit-scrollbar": {
-              display: "none", // Hide the scrollbar
+              display: "none",
             },
             width: "100%",
             backgroundColor: "#FFFFFFBF",
             py: 3,
             px: 5,
             mt: 2,
-            // borderRadius: 10,
-            // border: "solid black 0.9px",
           }}
         >
           <List>
@@ -274,7 +264,7 @@ const EditRecipe = ({ recipeData }) => {
               },
             },
             "&::-webkit-scrollbar": {
-              display: "none", // Hide the scrollbar
+              display: "none",
             },
             width: "100%",
             backgroundColor: "#FFFFFFBF",

@@ -42,7 +42,6 @@ export const AvatarUpload = () => {
           height: { xs: "250px", md: "300px" },
           borderRadius: { xs: 40, md: 40 },
           backgroundColor: "#00000010",
-          // backgroundImage: { avatarUrl },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

@@ -35,11 +35,8 @@ const AutocompleteField = () => {
   const debouncedSearch = debounce(handleSearch, 300, { trailing: true });
 
   const handleAutocompleteChange = (e, newValue) => {
-    // maybe add ingredient to database
-
     if (newValue && newValue.ingredientName.includes("Add")) {
       setOptionTerm({ ingredientName: searchTerm });
-      //   dispatch(updateSelectedIngredient(searchTerm));
       dispatch(addIngredient({ ingredient: searchTerm }));
     } else {
       dispatch(updateSelectedIngredient(newValue));

@@ -1,11 +1,9 @@
-import { Button, IconButton, Menu, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Insights from "../pages/InsightsPage";
 import Recipe from "../pages/HomePage";
 import Planner from "../pages/PlannerPage";
-import { KeyboardArrowDown } from "@mui/icons-material";
-import MenuIcon from "@mui/icons-material/Menu";
 
 const Bar = () => {
   return (
@@ -16,7 +14,6 @@ const Bar = () => {
         justifyContent: "space-evenly",
         display: { xs: "none", md: "flex" },
         width: "300px",
-        // backgroundColor: "green",
       }}
     >
       <NavLink

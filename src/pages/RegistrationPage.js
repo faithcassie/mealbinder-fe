@@ -41,7 +41,6 @@ const RegistrationPage = () => {
 
   const onSubmit = async (data) => {
     const { name, email, password } = data;
-    // console.log(name);
     try {
       await auth.register({ name, email, password }, () => {
         navigate("/", { replace: true });
@@ -49,7 +48,6 @@ const RegistrationPage = () => {
     } catch (error) {
       reset();
       setError("responseError", error);
-      // console.log(error);
     }
   };
   const googleAuth = () => {

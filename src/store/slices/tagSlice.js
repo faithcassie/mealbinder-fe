@@ -7,7 +7,7 @@ const initialState = {
   tagList: [],
   selectedTags: [],
   allTags: [],
-  insightTags: [], // for insight page
+  insightTags: [],
 };
 
 export const tagSlice = createSlice({

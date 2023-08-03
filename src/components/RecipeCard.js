@@ -4,18 +4,19 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Chip,
   IconButton,
   Stack,
   Typography,
 } from "@mui/material";
 import React from "react";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewPlan } from "../store/slices/plannerSlice";
-import { replace } from "lodash";
 
 const RecipeCard = ({ isHome, recipe }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { selectDate } = useSelector((state) => state.planner);
   let recipeId = recipe._id;
@@ -56,16 +57,49 @@ const RecipeCard = ({ isHome, recipe }) => {
           alignItems: "left",
         }}
       >
-        <Typography variant="subtitle1">{recipe.title}</Typography>
-        <Stack direction="row" alignItems="center">
-          <RouterLink className="link" to={`/recipes/${recipeId}`}>
-            Details
-          </RouterLink>
-          <IconButton
-            onClick={() => {
-              if (isHome) {
-                return;
-              } else {
+        <Typography
+          onClick={() => navigate(`/recipes/${recipeId}`)}
+          variant="subtitle1"
+          sx={{
+            ":hover": {
+              cursor: "pointer",
+              color: "#AB6614",
+              fontWeight: 400,
+            },
+          }}
+        >
+          {recipe.title}
+        </Typography>
+        {isHome && (
+          <Stack
+            sx={{
+              width: "230px",
+              height: "100%",
+              display: "block",
+              paddingY: 2,
+            }}
+          >
+            {recipe.tagList.map((item) => (
+              <Chip
+                size="small"
+                key={item.tag._id}
+                sx={{
+                  mr: 1,
+                  mb: 1,
+                }}
+                label={item.tag.tag}
+              />
+            ))}
+          </Stack>
+        )}
+        {!isHome && (
+          <Stack direction="row" alignItems="center">
+            <RouterLink className="link" to={`/recipes/${recipeId}`}>
+              Details
+            </RouterLink>
+
+            <IconButton
+              onClick={() => {
                 dispatch(
                   createNewPlan({
                     mealList: [
@@ -76,20 +110,20 @@ const RecipeCard = ({ isHome, recipe }) => {
                     date: selectDate.toISOString().split("T")[0],
                   })
                 );
-              }
-            }}
-            sx={{
-              pl: 2,
-              "&.MuiButtonBase-root:hover": {
-                backgroundColor: "transparent",
-                color: "#AB6614",
-              },
-            }}
-            aria-label="add to planner"
-          >
-            <ControlPointIcon />
-          </IconButton>
-        </Stack>
+              }}
+              sx={{
+                pl: 2,
+                "&.MuiButtonBase-root:hover": {
+                  backgroundColor: "transparent",
+                  color: "#AB6614",
+                },
+              }}
+              aria-label="add to planner"
+            >
+              <ControlPointIcon />
+            </IconButton>
+          </Stack>
+        )}
       </CardContent>
     </Card>
   );

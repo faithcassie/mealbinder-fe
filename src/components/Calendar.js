@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectingDate } from "../store/slices/plannerSlice";
 
 const Calendar = () => {
-  //   const [selectDate, setSelectDate] = React.useState(new Date());
   const { selectDate } = useSelector((state) => state.planner);
 
   const dispatch = useDispatch();

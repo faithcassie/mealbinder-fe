@@ -2,7 +2,7 @@ import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_UPLOAD_PRESET } from "../api/config";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import axios from "axios";
 import React from "react";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRecipeImage } from "../store/slices/recipeSlice";
 
@@ -34,7 +34,6 @@ export const ImageUpload = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          //   paddingX: "30px",
         }}
       >
         <input
@@ -42,7 +41,6 @@ export const ImageUpload = () => {
           type="file"
           accept="image/*"
           onChange={(e) => handleImageUpload(e)}
-          // onClick={() => document.querySelector("input[type=file]").click()}
         />
         {recipeImage && (
           <CloudinaryContext

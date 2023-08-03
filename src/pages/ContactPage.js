@@ -14,11 +14,8 @@ const ContactPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Extract form data
     const formData = new FormData(event.target);
-
     try {
-      // Send the form data to the specified URL using fetch
       const response = await fetch(
         "https://formsubmit.co/faithc.nguyen@gmail.com",
         {
@@ -26,13 +23,10 @@ const ContactPage = () => {
           body: formData,
         }
       );
-
-      // Check if the form submission was successful (response code 200)
       if (response.ok) {
-        setIsSubmitted(true); // Set the submitted state to true
+        setIsSubmitted(true);
       }
     } catch (error) {
-      // Handle fetch error (optional)
       console.error("Error occurred while submitting the form:", error);
     }
   };
@@ -41,7 +35,6 @@ const ContactPage = () => {
     <Container
       component="div"
       className="contact-form"
-      //   maxWidth="sm"
       sx={{
         backgroundColor: "#FFFFFFBF",
         transform: "translateY(-5px)",
@@ -69,7 +62,6 @@ const ContactPage = () => {
 
             <TextField
               fullWidth
-              //   id="email"
               name="email"
               type="email"
               label="Your email?"
@@ -83,7 +75,6 @@ const ContactPage = () => {
               rows={10}
               label="Leave us a message. :) "
               required
-              //   variant="filled"
               sx={{ marginTop: 2, width: "100%" }}
             />
             <br />

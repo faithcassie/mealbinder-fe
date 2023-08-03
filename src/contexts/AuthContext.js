@@ -166,8 +166,6 @@ function AuthProvider({ children }) {
       : refresh.current;
 
   useEffect(() => {
-    // Check if a token exists in the URL (from Google authentication redirect)
-
     if (token) {
       setSession(token);
       getUser();
@@ -185,7 +183,7 @@ function AuthProvider({ children }) {
         payload: { user },
       });
     } catch (error) {
-      // dispatch(userSlice.actions.hasError(error.message));
+      console.error(error);
     }
   };
 

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import DropdownButton from "../components/DropdownButton";
 import {
   Box,
   Button,
@@ -14,14 +13,12 @@ import {
 import {
   editRecipe,
   getRecipeDetails,
-  updateRecipe,
   updateRecipeImage,
 } from "../store/slices/recipeSlice";
 import { useNavigate } from "react-router-dom";
 
 const ViewRecipe = ({ recipeId, recipeData }) => {
   const navigate = useNavigate();
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(editRecipe(true));
@@ -50,13 +47,12 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
             height: "400px",
             overflow: "auto",
             "&::-webkit-scrollbar": {
-              display: "none", // Hide the scrollbar
+              display: "none",
             },
             width: "100%",
             backgroundColor: "#FFFFFFBF",
             py: 3,
             px: 5,
-            // mt: 2,
           }}
         >
           <List>
@@ -83,11 +79,9 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
           }}
         >
           {recipeData.tagList.map((item) => (
-            // console.log(item.tag);
             <Chip
               key={item.tag._id}
               sx={{
-                // backgroundColor: "red",
                 position: "relative",
                 zIndex: "100",
               }}
@@ -142,7 +136,7 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
             height: "400px",
             overflow: "auto",
             "&::-webkit-scrollbar": {
-              display: "none", // Hide the scrollbar
+              display: "none",
             },
             width: "100%",
             backgroundColor: "#FFFFFFBF",

@@ -12,7 +12,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,10 +25,10 @@ import { useNavigate } from "react-router-dom";
 const CreateRecipe = () => {
   const dispatch = useDispatch();
   const [measurement, setMeasurement] = useState("");
-  // const [ingredient, setIngredient] = useState("");
+
   const [title, setTitle] = useState("");
   const [instructions, setInstructions] = useState("");
-  const [ingredientList, setIngredientList] = useState([]); // ingredient obj & measurement string
+  const [ingredientList, setIngredientList] = useState([]);
   const { selectedIngredient } = useSelector((state) => state.ingredient);
   const { recipeImage } = useSelector((state) => state.recipe);
   const { selectedTags } = useSelector((state) => state.tag);
@@ -45,11 +45,9 @@ const CreateRecipe = () => {
     };
     const updatedIngredientList = [...ingredientList, newIngredient];
     setIngredientList(updatedIngredientList);
-    // setIngredient("");
     setMeasurement("");
   };
 
-  // ["1oz beans"] => ["beans", "carrots"]
   const handleChange = (event) => {
     setInstructions(event.target.value);
   };
@@ -111,7 +109,7 @@ const CreateRecipe = () => {
           <FormControl
             sx={{
               mr: 2,
-              //   pb: 3,
+
               width: "100px",
               display: "flex",
               alignItems: "center",
@@ -121,8 +119,6 @@ const CreateRecipe = () => {
             <OutlinedInput
               sx={{
                 height: { xs: "35px", md: "50px" },
-                backgroundColor: "#ffffffc8",
-                // borderRadius: 15,
               }}
               id="outlined-adornment-weight"
               aria-describedby="outlined-weight-helper-text"
@@ -167,7 +163,7 @@ const CreateRecipe = () => {
             height: "400px",
             overflow: "auto",
             "&::-webkit-scrollbar": {
-              display: "none", // Hide the scrollbar
+              display: "none",
             },
             width: "100%",
             backgroundColor: "#FFFFFFBF",
@@ -248,7 +244,7 @@ const CreateRecipe = () => {
               },
             },
             "&::-webkit-scrollbar": {
-              display: "none", // Hide the scrollbar
+              display: "none",
             },
             width: "100%",
             backgroundColor: "#FFFFFFBF",

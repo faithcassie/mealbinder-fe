@@ -41,7 +41,7 @@ export const recipeSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       const { count, recipes, totalPage } = action.payload;
-      state.recipeList = recipes; // ?
+      state.recipeList = recipes;
       state.recipeTotal = count;
       state.totalPage = totalPage;
     },
@@ -109,7 +109,6 @@ export const createRecipe =
         imageUrl,
       });
       dispatch(recipeSlice.actions.createRecipeSuccess(response.data));
-      // dispatch(getRecipes);
     } catch (error) {
       dispatch(recipeSlice.actions.hasError(error.message));
     }
@@ -128,7 +127,6 @@ export const updateRecipe =
         imageUrl,
       });
       dispatch(recipeSlice.actions.updateRecipeSuccess(response.data));
-      // dispatch(getRecipes);
     } catch (error) {
       dispatch(recipeSlice.actions.hasError(error.message));
     }

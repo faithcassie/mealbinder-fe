@@ -19,17 +19,11 @@ function ThemeProvider({ children }) {
       secondary: SECONDARY,
       background: {
         default: "#FAF4EE",
-        // paper: "#FFFFFFBF",
       },
     },
   };
   const theme = createTheme(themeOptions);
 
-  return (
-    <MUIThemeProvider theme={theme}>
-      {/* <CssBaseline /> */}
-      {children}
-    </MUIThemeProvider>
-  );
+  return <MUIThemeProvider theme={theme}>{children}</MUIThemeProvider>;
 }
 export default ThemeProvider;

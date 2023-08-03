@@ -1,7 +1,5 @@
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import {
-  Alert,
-  AlertTitle,
   Box,
   Container,
   Dialog,
@@ -23,19 +21,17 @@ import RecipeCard from "./RecipeCard";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { getPlannerByDate, updateMealList } from "../store/slices/plannerSlice";
 import AlertMsg from "./AlertMsg";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const DailyPlanner = ({ sx }) => {
   const [open, setOpen] = useState(false);
-  // const navigate = useNavigate();
-
   const { recipeList, totalPage } = useSelector((state) => state.recipe);
   const { mealListByDate } = useSelector((state) => state.planner);
   const [page, setPage] = React.useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipes({ page }));
-  }, [page]);
+  }, [page, dispatch]);
 
   const handleClose = () => {
     setOpen(false);
@@ -50,7 +46,7 @@ const DailyPlanner = ({ sx }) => {
     dispatch(
       getPlannerByDate({ date: selectDate.toISOString().split("T")[0] })
     );
-  }, [selectDate]);
+  }, [selectDate, dispatch]);
 
   return (
     <Container component="div">
@@ -79,7 +75,6 @@ const DailyPlanner = ({ sx }) => {
           sx={{
             margin: 5,
             width: "auto",
-            // backgroundColor: "green",
           }}
         >
           <AlertMsg />

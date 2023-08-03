@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,6 @@ const SearchBar = () => {
   const { recipeTotal, searchRecipeTitle } = useSelector(
     (state) => state.recipe
   );
-  // const [, setSearchRecipeTitle] = useState("");
   const handleCreateButton = () => {
     navigate("recipes/create", { replace: true });
   };
@@ -45,7 +44,6 @@ const SearchBar = () => {
       <Paper
         component="form"
         sx={{
-          // px: "20px",
           mb: "2rem",
           display: "flex",
           flexDirection: "row",
@@ -85,7 +83,6 @@ const SearchBar = () => {
             height: "100px",
             fontWeight: "bold",
             fontSize: "1rem",
-            // border: "black solid 0.8px",
             "&:hover": {
               transform: "translateY(-3px)",
               boxShadow: "0 0 8px 5px #00000015",
@@ -101,7 +98,6 @@ const SearchBar = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            // alignSelf: "center",
             textAlign: "center",
             justifyContent: "center",
             borderRadius: "20px",
@@ -109,7 +105,6 @@ const SearchBar = () => {
             width: "100px",
             height: "100px",
             justifySelf: "center",
-            // my: "20px",
           }}
         >
           <Typography
