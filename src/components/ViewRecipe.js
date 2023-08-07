@@ -145,9 +145,19 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
             mt: 2,
           }}
         >
-          {recipeData.instructions.split("\n").map((line, index) => (
+          {recipeData.instructions.split("\n\n").map(
+            (line, index) =>
+              line.trim() !== "" && (
+                <div key={index}>
+                  <Typography variant="h5">Step {index + 1}</Typography>
+                  <p>{line}</p>
+                </div>
+              )
+          )}
+
+          {/* {recipeData.instructions.split("\n").map((line, index) => (
             <p key={index}>{line}</p>
-          ))}
+          ))} */}
         </Box>
         <Box
           sx={{
