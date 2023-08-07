@@ -2,7 +2,7 @@
 
 ## Demostration
 
-https://remarkable-kashata-ee97b9.netlify.app/
+https://mealbinder.netlify.app/
 
 ## User Stories
 
