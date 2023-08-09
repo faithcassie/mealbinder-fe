@@ -24,6 +24,7 @@ import AutocompleteField from "./AutocompleteField";
 import { useDispatch, useSelector } from "react-redux";
 import { ImageUpload } from "../utils/cloudinary";
 import TagField from "./TagField";
+import { motion } from "framer-motion";
 
 const EditRecipe = ({ recipeData }) => {
   const dispatch = useDispatch();
@@ -95,7 +96,14 @@ const EditRecipe = ({ recipeData }) => {
     setTitle(event.target.value);
   };
   return (
-    <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+    <Stack
+      direction={{ xs: "column", md: "row" }}
+      spacing={2}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Container
         sx={{
           minHeight: { xs: "fit-content", md: "90vh" },

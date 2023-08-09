@@ -10,6 +10,7 @@ import { FormProvider } from "../components/form/FormProvider";
 import { FTextField } from "../components/form/FTextField";
 import googleImg from "../assets/google.png";
 import LoginPage from "./LoginPage";
+import { motion } from "framer-motion";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -59,6 +60,11 @@ const RegistrationPage = () => {
 
   return (
     <Box
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
       sx={{
         width: { lg: 500, xs: 300 },
         height: "auto",

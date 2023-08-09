@@ -3,12 +3,21 @@ import Calendar from "../components/Calendar";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import DailyPlanner from "../components/DailyPlanner";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const PlannerPage = () => {
   const { totalMealPrep } = useSelector((state) => state.planner);
 
   return (
-    <Stack direction={{ xs: "column", md: "row" }} sx={{ pt: 3 }}>
+    <Stack
+      direction={{ xs: "column", md: "row" }}
+      sx={{ pt: 3 }}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <Container
         sx={{
           width: { xs: "100%", md: "40%" },

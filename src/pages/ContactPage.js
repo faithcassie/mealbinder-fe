@@ -1,5 +1,6 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const ContactPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -25,7 +26,11 @@ const ContactPage = () => {
 
   return (
     <Container
-      component="div"
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
       className="contact-form"
       sx={{
         backgroundColor: "#FFFFFFBF",

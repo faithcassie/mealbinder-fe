@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser, updateCurrentUser } from "../store/slices/userSlice";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const UserAccPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,11 @@ const UserAccPage = () => {
 
   return (
     <Container
-      component="div"
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
       sx={{
         width: "100%",
         minHeight: "fit-content",

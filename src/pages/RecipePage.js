@@ -5,7 +5,6 @@ import ViewRecipe from "../components/ViewRecipe";
 import { useDispatch, useSelector } from "react-redux";
 import EditRecipe from "../components/EditRecipe";
 import { getRecipeDetails } from "../store/slices/recipeSlice";
-import { Container } from "@mui/material";
 
 const RecipePage = () => {
   const { recipeData, isEditing } = useSelector((state) => state.recipe);

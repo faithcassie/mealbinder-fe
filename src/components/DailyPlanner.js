@@ -22,6 +22,7 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { getPlannerByDate, updateMealList } from "../store/slices/plannerSlice";
 import AlertMsg from "./AlertMsg";
 import { Link as RouterLink } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const DailyPlanner = ({ sx }) => {
   const [open, setOpen] = useState(false);
@@ -70,7 +71,17 @@ const DailyPlanner = ({ sx }) => {
         </IconButton>
       </Stack>
 
-      <Dialog fullWidth maxWidth open={open} onClose={handleClose}>
+      <Dialog
+        fullWidth
+        maxWidth
+        open={open}
+        onClose={handleClose}
+        component={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.4 }}
+      >
         <Box
           sx={{
             margin: 5,

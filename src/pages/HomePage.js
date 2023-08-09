@@ -2,11 +2,10 @@ import { Container, Grid, Pagination } from "@mui/material";
 import React, { useEffect } from "react";
 import Filter from "../components/Filter";
 import RecipeCard from "../components/RecipeCard";
-import recipes from "../recipes.json";
 import SearchBar from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../store/slices/recipeSlice";
-import { getAllTags } from "../store/slices/tagSlice";
+import { motion } from "framer-motion";
 
 const HomePage = () => {
   const { recipeList, totalPage } = useSelector((state) => state.recipe);
@@ -17,7 +16,14 @@ const HomePage = () => {
   }, [page]);
 
   return (
-    <Container sx={{ mt: 5 }}>
+    <Container
+      sx={{ mt: 5 }}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <SearchBar />
       <Filter />
       <Grid

@@ -19,7 +19,7 @@ const Search = () => {
 
   return (
     <Paper
-      component="form"
+      // component="form"
       sx={{
         px: "20px",
         display: "flex",

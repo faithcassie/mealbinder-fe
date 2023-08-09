@@ -21,6 +21,7 @@ import AutocompleteField from "./AutocompleteField";
 import TagField from "./TagField";
 import { ImageUpload } from "../utils/cloudinary";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const CreateRecipe = () => {
   const dispatch = useDispatch();
@@ -80,7 +81,15 @@ const CreateRecipe = () => {
   };
 
   return (
-    <Stack direction={{ xs: "column", md: "row" }} spacing={2} mt={2}>
+    <Stack
+      direction={{ xs: "column", md: "row" }}
+      spacing={2}
+      mt={2}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Container sx={{ minHeight: "90vh", width: { xs: "100%", md: "40%" } }}>
         <Typography variant="h5" textAlign="center" pb={5}>
           Create new recipe
@@ -218,7 +227,9 @@ const CreateRecipe = () => {
             >
               Save
             </Button>
-            <Button variant="text">Cancel</Button>
+            <Button onClick={() => navigate("/")} variant="text">
+              Cancel
+            </Button>
           </Box>
         </Stack>
         <Typography variant="subtitle1" sx={{ mt: 5, ml: 5 }}>

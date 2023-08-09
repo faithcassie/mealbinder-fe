@@ -5,6 +5,7 @@ import BarChart from "../components/BarChart";
 import flourImg from "../assets/flour.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getMealData, getTagData } from "../store/slices/insightSlice";
+import { motion } from "framer-motion";
 
 const InsightsPage = () => {
   const { recipeInsight, mealInsight } = useSelector((state) => state.insight);
@@ -66,7 +67,14 @@ const InsightsPage = () => {
   }
 
   return (
-    <Container sx={{ pt: 8 }}>
+    <Container
+      sx={{ pt: 8 }}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <Box
         sx={{
           width: "100%",

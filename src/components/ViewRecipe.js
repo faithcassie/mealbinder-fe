@@ -16,6 +16,7 @@ import {
   updateRecipeImage,
 } from "../store/slices/recipeSlice";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const ViewRecipe = ({ recipeId, recipeData }) => {
   const navigate = useNavigate();
@@ -29,7 +30,15 @@ const ViewRecipe = ({ recipeId, recipeData }) => {
   }, []);
 
   return (
-    <Stack direction={{ xs: "column", md: "row" }} spacing={2} paddingTop={5}>
+    <Stack
+      direction={{ xs: "column", md: "row" }}
+      spacing={2}
+      paddingTop={5}
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Container
         sx={{
           minHeight: { xs: "fit-content", md: "90vh" },
