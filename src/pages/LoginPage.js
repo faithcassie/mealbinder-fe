@@ -86,6 +86,7 @@ const LoginPage = () => {
         )}
         <Stack sx={{ width: "100%" }} alignItems="center" paddingTop="20px">
           <FTextField
+            helperText="test:clara@gmail.com"
             name="email"
             label="Email*"
             variant="standard"
@@ -95,6 +96,7 @@ const LoginPage = () => {
             }}
           />
           <FTextField
+            helperText="test:123"
             name="password"
             label="Password*"
             type="password"
