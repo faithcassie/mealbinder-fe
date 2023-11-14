@@ -1,8 +1,24 @@
 # MealBinder MERN stack
 
+
+
+## Backend repo
+https://github.com/faithcassie/mealbinder-be
+
 ## Demostration
 
 https://mealbinder.netlify.app/
+
+<img src="./public/mealbinder.png" alt="spotlights demo" style="width:600px;"/>
+
+## Tech stack
+* ReactJS
+* Redux Toolkit
+* NodeJS
+* ExpressJS
+* JWT
+* MUI
+* MongoDB
 
 ## User Stories
 
@@ -20,7 +36,7 @@ Users can easily join by signing up with their email address. Once registered, t
 - As a user, I can login with my email and password.
 - As a user, I can stay signed in after refreshing the page.
 
-### User ( coming soon )
+### User 
 
 - As a user, I can view my profile.
 - As a user, I can update my profile
